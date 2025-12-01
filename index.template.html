@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>My Articles</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="site-wrapper">
+    <header class="site-header">
+      <h1 class="site-title">My Articles</h1>
+      <p class="site-tagline">
+        Articles generated from LaTeX and published on GitHub Pages.
+      </p>
+      <p class="site-count">
+        {{ARTICLE_SUMMARY}}
+      </p>
+    </header>
+
+    <main class="site-main">
+      <section class="post-section">
+        <ul class="post-list">
+          <!-- ARTICLE_LIST -->
+        </ul>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <span>Static index generated from the <code>articles/</code> folder.</span>
+      <span>Works locally and on GitHub Pages.</span>
+    </footer>
+  </div>
+</body>
+</html>
