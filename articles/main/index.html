@@ -5,8 +5,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <title>Enhancing MVC architecture pattern description using its System
-of Systems model</title>
+  <title>A Tufte-Style Book</title>
 
   <style>
     /* --- Base Typography --- */
@@ -172,1675 +171,1463 @@ of Systems model</title>
 <body>
 <div class="container">
 
-      <h1 class="title">Enhancing MVC architecture pattern description
-using its System of Systems model</h1>
+      <h1 class="title">A Tufte-Style Book</h1>
   
   
-      <div class="author">Mrityunjay Kumar</div>
-      <div class="author">Venkatesh Choppella</div>
+      <div class="author">The Tufte-LaTeX Developers (with
+modifications)</div>
   
+      <div class="date">The edition number</div>
   
   <hr style="margin: 2em 0; border: 0; border-top: 1px solid #ccc;" />
 
-  <div class="CCSXML">
-  <p>&lt;ccs2012&gt; &lt;concept&gt;
-  &lt;concept_id&gt;10011007.10010940.10010971.10010972&lt;/concept_id&gt;
-  &lt;concept_desc&gt;Software and its engineering Software
-  architectures&lt;/concept_desc&gt;
-  &lt;concept_significance&gt;300&lt;/concept_significance&gt;
-  &lt;/concept&gt; &lt;concept&gt;
-  &lt;concept_id&gt;10011007.10010940.10010971.10010980&lt;/concept_id&gt;
-  &lt;concept_desc&gt;Software and its engineering Software system
-  models&lt;/concept_desc&gt;
-  &lt;concept_significance&gt;500&lt;/concept_significance&gt;
-  &lt;/concept&gt; &lt;/ccs2012&gt;</p>
+  <div class="fullwidth">
+  <p>  Copyright ©  </p>
+  <p>Licensed under the Apache License, Version 2.0 (the “License”); you
+  may not use this file except in compliance with the License. You may
+  obtain a copy of the License at <a
+  href="http://www.apache.org/licenses/LICENSE-2.0"
+  class="uri">http://www.apache.org/licenses/LICENSE-2.0</a>. Unless
+  required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an , either express or
+  implied. See the License for the specific language governing
+  permissions and limitations under the License.</p>
+  <p><em>First printing, JanuaryFebruaryMarchAprilMayJune
+  JulyAugustSeptemberOctoberNovember December</em></p>
   </div>
-  <h1 id="sec:introduction">Introduction</h1>
-  <p>Every new hire in a SaaS (Software-as-a-Service) product company
-  must understand the product well before contributing to the code base.
-  Given a comprehension task and access to the product code repository,
-  a typical approach by the engineer is to read this large code base and
-  attempt to understand it. Prior programming experience and the domain
-  knowledge acquired through various overview sessions during onboarding
-  are leveraged to do so. Sometimes, partial product documentation may
-  be available and can be somewhat useful. This approach usually proves
-  ineffective since it is hard for a novice to understand a complex
-  system by focusing on such granular details as code <span
-  class="citation"
-  data-cites="hmelo-silver_fish_2007 hmelo-silver_comparing_2004">(Hmelo-Silver
-  et al. 2007; Hmelo-Silver and Pfeffer 2004)</span>. A top-down <span
-  class="citation"
-  data-cites="brooks_using_1978 brooks1983towards">(Brooks 1978,
-  1983)</span>, knowledge-based <span class="citation"
-  data-cites="letovsky_cognitive_1987">(Letovsky 1987)</span>, systems
-  way <span class="citation"
-  data-cites="hmelo-silver_understanding_2006">(Hmelo-Silver and Azevedo
-  2006)</span> is likely to be a better approach.</p>
-  <p>We believe that understanding the architecture patterns used in the
-  product can help novice engineers comprehend them more
-  effectively.</p>
-  <p>Architecture patterns provide established solutions to
-  architectural problems. They offer a common vocabulary and
-  understanding of the underlying principles and capture decisions made
-  frequently in practice. Knowledge of the principles and decisions can
-  provide important cues to understand the behavior of a running system.
-  The vocabulary can facilitate efficient communication and knowledge
-  transfer. It can also help capture the product understanding in a
-  precise way.</p>
-  <p>The knowledge of patterns can aid comprehension of a software
-  system in three ways: a) The engineer can look for the signature of a
-  pattern in the product (the components, the connections, and
-  interactions between components), which decomposes the comprehension
-  tasks into smaller, more manageable activities, b) the dynamics
-  described in the pattern can help make sense of specific parts of the
-  code which implement the dynamics, and c) The knowledge of the design
-  decisions of a pattern can explain why specific components or
-  algorithms have been implemented in a non-obvious way.</p>
-  <p>However, for these pattern descriptions to benefit novice
-  engineers, they must be high-quality and fit their needs. High-quality
-  pattern descriptions are clear comprehensive, and articulate the
-  architectural solution precisely. Fitment comes from the right level
-  of abstraction and a vocabulary that is easy to learn and use.
-  High-quality and fit pattern descriptions can be a reference and aid
-  in teaching-learning.</p>
-  <p>We want to explore whether the current architecture pattern
-  descriptions are high-quality and fit novice engineers’ needs. In this
-  paper, we report on a study we did of the pattern description of a
-  popular and important architecture pattern for SaaS products (MVC
-  pattern). We framed three research questions to guide our study:</p>
-  <div class="description">
-  <p><strong>RQ1</strong>: Which source of documentation of the MVC
-  pattern description can be considered a benchmark?</p>
-  <p><strong>RQ2</strong>: Is the benchmark high-quality and fit for the
-  needs of novice engineers?</p>
-  <p><strong>RQ3</strong>: How can we extend the benchmark to improve
-  its quality and fitness?</p>
+  <p> </p>
+  <div class="doublespace">
+  <p><em>Dedicated to those who appreciate LaTeX and the work of
+  Edward R. Tufte and Donald E. Knuth.</em></p>
   </div>
-  <p>In the paper, we show that the benchmark description of the MVC
-  pattern has gaps and recommend a novel way of augmenting the
-  descriptions to address these gaps. We propose that we build a System
-  of Systems (SoS<a href="#fn1" class="footnote-ref" id="fnref1"
-  role="doc-noteref"><sup>1</sup></a>) model of MVC and use the model
-  representation as an augmented description of the patterns. We show
-  that a pattern can be modeled as a System of Systems (where the
-  components are systems) and that transition systems vocabulary can be
-  used to capture the system dynamics in a precise way.</p>
-  <p>Section <a href="#sec:related" data-reference-type="ref"
-  data-reference="sec:related">2</a> presents the related work on what
-  constitutes good documentation of pattern description and why systems
-  vocabulary can produce a good pattern description. Using the
-  literature, we also create the evaluation criteria for a pattern
-  description for its quality and fitment. Section <a href="#sec:sos"
-  data-reference-type="ref" data-reference="sec:sos">5</a> presents the
-  transition systems model for communicating systems, and Section <a
-  href="#sec:sosexample" data-reference-type="ref"
-  data-reference="sec:sosexample">6</a> shows an example of an SoS
-  model. Section <a href="#sec:pattern-mvc" data-reference-type="ref"
-  data-reference="sec:pattern-mvc">3</a> describes the MVC pattern as
-  presented in the literature, and Section <a href="#sec:sos-mvc"
-  data-reference-type="ref" data-reference="sec:sos-mvc">7</a> builds
-  the SoS model of MVC, using the vocabulary presented in Section <a
-  href="#sec:sos" data-reference-type="ref"
-  data-reference="sec:sos">5</a>. Section <a href="#sec:analysis"
-  data-reference-type="ref" data-reference="sec:analysis">8</a> includes
-  a short survey of MVC pattern descriptions available through various
-  sources. The section also presents an evaluation of the benchmark
-  pattern description <span class="citation"
-  data-cites="buschmannPatternOrientedSoftwareArchitecture1996">(Buschmann
-  et al. 1996a)</span> using the criteria from Section <a
-  href="#subsec:description-components" data-reference-type="ref"
-  data-reference="subsec:description-components">2.1</a> and shows how
-  the SoS model description addresses the gaps. Section <a
-  href="#sec:conclusion" data-reference-type="ref"
-  data-reference="sec:conclusion">9</a> concludes the paper and outlines
-  the future work planned.</p>
-  <h1 id="sec:related">Related Work</h1>
-  <p><strong>Why architecture patterns</strong>: Perry and Wolf <span
-  class="citation" data-cites="perryFoundationsStudySoftware1992">(Perry
-  and Wolf 1992)</span> suggested modeling an architecture as a
-  three-tuple {Elements, Form, Rationale}, and defined architectural
-  style (or pattern) as an abstraction that is less constrained and less
-  complete than a particular architecture. Bass et al. define an
-  architecture pattern as a package of design decisions found repeatedly
-  in practice, has known properties that permit reuse, and describes a
-  class of architectures <span class="citation"
-  data-cites="bassSoftwareArchitecturePractice2003">(Bass et al.
-  2003)</span>. Patterns are helpful because they provide a common
-  vocabulary and understanding of the underlying principles <span
+  <h2 class="unnumbered" id="introduction">Introduction</h2>
+  <p>This sample book discusses the design of Edward Tufte’s books<span
   class="citation"
-  data-cites="gammaDesignPatternsAbstraction1993">(Gamma et al.
-  1993)</span>.</p>
-  <p><strong>Documenting architecture patterns and their behavior
-  well</strong>: When documenting patterns, Clements et al. <span
-  class="citation"
-  data-cites="clementsPracticalMethodDocumenting2002">(Clements et al.
-  2002)</span> suggest capturing assumptions about the environment, as
-  well as assumptions about the need. The documentation should also
-  capture the constraints imposed to shape the architecture in specific
-  ways. Shaw and Garlan <span class="citation"
-  data-cites="shaw2005formulations">(Shaw and Garlan 2005)</span> talk
-  about documenting the decisions made when developing the
-  architecture.</p>
-  <p>Architecture patterns are documented by specifying the context,
-  problem, and solution <span class="citation"
-  data-cites="buschmannPatternOrientedSoftwareArchitecture1996">(Buschmann
-  et al. 1996a)</span>. A <em>context</em> represents a recurring,
-  common situation that gives rise to a <em>problem</em>, which is
-  solved by the approach provided in the <em>solution</em>. The solution
-  should contain "<em>a set of element types, a set of interaction
-  mechanisms, a topological layout of components, and a set of semantic
-  constraints on topology, element behavior, and interaction
-  mechanisms</em>"<span class="citation"
-  data-cites="bassSoftwareArchitecturePractice2003">(Bass et al.
-  2003)</span>.</p>
-  <p>Documentation of behavior should reveal information about the
-  ordering of interactions among the elements and time dependencies of
-  interactions so that one can reason about the system’s completeness,
-  correctness, and quality attributes <span class="citation"
-  data-cites="bachmannDocumentingSoftwareArchitecture2002">(Bachmann et
-  al. 2002)</span>. There have been attempts to document the
-  architecture and patterns more formally using Architecture Description
-  Languages (ADL) <span class="citation"
-  data-cites="kamalEvaluationADLsModeling2007 avgeriouArchitecturalPatternsRevisited2005">(Kamal
-  and Avgeriou 2007; Avgeriou and Zdun 2005)</span>, and there have been
-  many ADLs defined and used over the years <span class="citation"
-  data-cites="malavoltaWhatIndustryNeeds2013">(Malavolta et al.
-  2013)</span>. However, they have focused more on the structure and
-  quality attributes and less on the behavior.</p>
-  <p><strong>SaaS products leverage common architectural
-  patterns</strong>: Service-oriented architectures, for example,
-  microservices-based architectures, are common patterns for SaaS
-  products <span class="citation"
-  data-cites="taibiArchitecturalPatternsMicroservices2018">(Taibi et al.
-  2018)</span>. While there is a case for specific architecture patterns
-  for cloud applications <span class="citation"
-  data-cites="pahlArchitecturalPrinciplesCloud2018">(Pahl et al.
-  2018)</span>, many existing architecture patterns are used in cloud
-  application development as well <span class="citation"
-  data-cites="fehlingCollectionPatternsCloud2011">(Fehling et al.
-  2011)</span>. Hence, knowing existing, common architecture patterns
-  well can benefit novice engineers at SaaS product companies.</p>
-  <p><strong>An architecture pattern is a system</strong>: A system is
-  "<em>a set of elements that is coherently organized and interconnected
-  in a pattern or structure that produces a characteristic set of
-  behaviors</em>" <span class="citation"
-  data-cites="meadows2008thinking">(Meadows 2008)</span>. This
-  definition is aligned with how we define an architecture or
-  architecture pattern <span class="citation"
-  data-cites="buschmannPatternOrientedSoftwareArchitecture1996 bassSoftwareArchitecturePractice2003">(Buschmann
-  et al. 1996a; Bass et al. 2003)</span> and suggests the use of systems
-  modeling for architecture patterns. When we model an architecture or
-  an architecture pattern as a system, we can apply the principles and
-  vocabulary that Systems theory <span class="citation"
-  data-cites="adams_systems_2014">(Adams et al. 2014)</span> affords
-  us.</p>
-  <p>There are multiple ways to model and describe a system - we can use
-  DEVS formalism <span class="citation"
-  data-cites="zeigler2000theory">(Zeigler et al. 2000)</span>,
-  Discrete-time dynamical systems formalism <span class="citation"
-  data-cites="beltaFormalMethodsDiscreteTime2017">(Belta et al.
-  2017)</span>, Abstract State Machine formalism <span class="citation"
-  data-cites="gurevichSequentialAbstractstateMachines2000 borgerAbstractStateMachines2010">(Gurevich
-  2000; Börger 2010)</span>, I/O automata <span class="citation"
-  data-cites="lynch1996distributed lynch2003input">(Lynch 1996; Lynch
-  2003)</span>, SysML <span class="citation"
-  data-cites="holtSysMLSystemsEngineering2008 weilkiensSystemsEngineeringSysML2011">(Holt
-  and Perry 2008; Weilkiens 2011)</span> or Statecharts <span
-  class="citation"
-  data-cites="harelStatechartsVisualFormalism1987">(Harel 1987)</span>,
-  to name a few.</p>
-  <p>Process calculi are good candidates for describing the behavior of
-  a system as well. Milner’s CCS <span class="citation"
-  data-cites="milner1980calculus">(Milner 1980)</span> has been used for
-  modeling MVC <span class="citation"
-  data-cites="yadav2010capturing">(Yadav and Joshi 2010)</span>,
-  pi-calculus <span class="citation"
-  data-cites="milner1980calculus">(Milner 1980)</span> extensions being
-  suitable for communicating systems that we are interested in. Hoare’s
-  CSP <span class="citation" data-cites="hoare1985communicating">(<span
-  class="nocase">Hoare et al.</span> 1985)</span> serves a similar
-  purpose. However, for the kind of interactive systems, we are
-  interested in, process calculi are better used when paired with a
-  specification language like Z <span class="citation"
-  data-cites="spivey1992z smith2012object">(Spivey and Abrial 1992;
-  Smith 2012)</span>, which can specify non-behavioral aspects. In
-  contrast, CCS or CSP can be used for behavior description <span
-  class="citation" data-cites="maccoll1999specifying">(MacColl and
-  Carrington 1999)</span>.</p>
-  <p>Given our focus on cloud-based reactive systems and target audience
-  of novice engineers, we plan to use labeled transition systems <span
-  class="citation"
-  data-cites="vanbenthemLogicTransitionSystems1994">(Van Benthem and
-  Bergstra 1994)</span> as used in <span class="citation"
-  data-cites="choppella2021algodynamics">(Choppella et al. 2021)</span>
-  and adapt it for our modeling of communicating systems and SoS by
-  using the notion of system composition by Tabuada <span
-  class="citation" data-cites="tabuada2009verification">(Tabuada
-  2009)</span>. This enables us to have a small vocabulary and a single
-  set of notation, using a simple state machine-based computation model
-  that can serve novice engineers’ needs well. We have used a similar
-  notation in prior work on the design skills of novice engineers <span
-  class="citation" data-cites="kumar2023modeling">(Kumar and Choppella
-  2023a)</span> and also evaluated it for ease of learning and use <span
-  class="citation" data-cites="kumar2023evaluating">(Kumar and Choppella
-  2023b)</span>.</p>
-  <h2 id="subsec:description-components">Evaluation criteria for pattern
-  description</h2>
-  <p>Based on the above, we can identify the attributes of a
-  <strong>high-quality and fit pattern description</strong>.</p>
-  <h3 id="high-quality">High-quality</h3>
-  <p>The description should provide clear and precise information about
-  the following:</p>
-  <ol>
-  <li><p>Q1: Elements of the pattern</p></li>
-  <li><p>Q2: Connections among the elements</p></li>
-  <li><p>Q3: Behavior of the individual elements</p></li>
-  <li><p>Q4: Behavior of the overall system (interaction among elements,
-  including timing dependencies of these interactions, requirements, and
-  constraints on the interactions)</p></li>
-  </ol>
-  <h3 id="fit-for-novice-engineers">Fit for novice engineers</h3>
-  <p>The description should be clear and understandable in the following
-  ways:</p>
-  <ol>
-  <li><p>F1: Level of abstraction. Information should be available at a
-  level of abstraction higher than code (so that implementation details
-  don’t become distracting).</p></li>
-  <li><p>F2: Modes of documentation. It should use modes of
-  documentation that afford precision - mathematical notations, formal
-  pseudo-code, and formal languages.</p></li>
-  <li><p>F3: Vocabulary. It should have a small vocabulary and be easy
-  to learn and use.</p></li>
-  </ol>
-  <h1 id="sec:pattern-mvc">Architecture Pattern:
-  Model-View-Controller(MVC)</h1>
-  <p>MVC (Model-View-Controller) is a popular architecture pattern used
-  over the years to architect user interfaces for desktop, mobile, and
-  web-based applications (along with its many variations that have
-  evolved over the years). We will use the case study of the MVC pattern
-  to illustrate the modeling as SoS. This section describes the pattern
-  and how they are described in the literature.</p>
-  <h2 id="subsec:mvcoverview">Pattern overview</h2>
-  <p>This section is adapted from two books: "Pattern-oriented Software
-  Architecture (POSA)" by Buschmann et al. <span class="citation"
-  data-cites="buschmannPatternOrientedSoftwareArchitecture1996">(Buschmann
-  et al. 1996a)</span> and "Software Architecture in Practice" by Bass
-  et al. <span class="citation"
-  data-cites="bassSoftwareArchitecturePractice2003">(Bass et al.
-  2003)</span> and is meant to give an overview of the pattern that we
-  will model. Note that there are many flavors of MVC in practice; we
-  have picked the initial formulation of the pattern.</p>
-  <h3 id="context-and-problem">Context and Problem</h3>
-  <p>For interactive systems, there are many situations when one or more
-  of these need to be addressed: a) <strong>Interface
-  diversity</strong>: Different users wish to have different user
-  interfaces to interact with the same data, b) <strong>Change
-  velocity</strong>: Changes in user interfaces are rapid and changing
-  the core of the application at that pace is not sustainable, and c)
-  <strong>Data safety</strong>: Complex rules govern the sanity and
-  consistency of data, and it is essential to keep the data safe
-  (consistent).</p>
-  <p>These are especially acute problems for data-driven
-  applications.</p>
-  <h3 id="solution-approach">Solution approach</h3>
-  <p>The solution is to separate the core data and functionality from
-  the presentation of the data (which governs the user interface) and
-  centralize the handling of user actions so that data consistency and
-  integrity can be maintained.</p>
-  <h3 id="solution-summary">Solution summary</h3>
-  <p>Fig <a href="#fig:mvcwikipedia" data-reference-type="ref"
-  data-reference="fig:mvcwikipedia">1</a> shows the classical MVC
-  pattern <span class="citation"
-  data-cites="bassSoftwareArchitecturePractice2003">(Bass et al.
-  2003)</span>. The pattern uses three components with specific
-  responsibilities and interaction patterns. We assume that the user
-  interacts with the View.</p>
-  <ol>
-  <li><p>View is responsible for rendering the UI for the user by
-  fetching data from the Model and enabling the user to interact with
-  the Controller. It also receives update notifications from the Model
-  and updates the View if required.</p></li>
-  <li><p>Controller provides a safe way to manipulate the Model. It
-  receives actions from View and processes them. Service requests
-  arising from the actions are sent to the Model, and View updates are
-  sent to the View.</p></li>
-  <li><p>Model keeps and manages the data. It receives read requests
-  from View and service requests from the Controller. When there are
-  updates to the data, it lets the View know of the change.</p></li>
-  </ol>
-  <figure id="fig:mvcwikipedia">
-  <img src="images/mvcwikipedia.png" />
-  <figcaption>Diagram of interactions within one possible take on the
-  MVC pattern (Credit: Wikipedia)</figcaption>
-  </figure>
-  <p>Controller is responsible for <strong>Data safety</strong> by
-  filtering the user requests and only sending valid update requests to
-  the Model. By having View own the user experience, multiple Views (and
-  corresponding controllers) can be created for different interfaces for
-  the same data (in Model), thus enabling <strong>Interface
-  diversity</strong>. By separating the logic across three components,
-  <strong>Change velocity</strong> can be sustained because changes get
-  localized most of the time.</p>
-  <p>There are two key use cases that the user expects this pattern to
-  handle in the same way a monolith UI application handles it. We
-  illustrate this by using an example of a UI application that shows the
-  user’s address; depending on the postal code in the address, they are
-  shown e-waste collection centers in that area. The two use cases are:
-  a) UC1: Jia scrolls down on the page showing the collection centers in
-  her area, and she sees additional collection centers on the page, and
-  b) UC2: Ali changes his profile and adds his office address. The page
-  shows the collection centers near his office.</p>
-  <h1 id="sec:pattern-benchmark">MVC Pattern description benchmark</h1>
-  <p>To understand how MVC is being documented in practice, we reviewed
-  its description from three types of sources: books <span
-  class="citation"
-  data-cites="buschmannPatternOrientedSoftwareArchitecture1996 bassSoftwareArchitecturePractice2003 fowlerPatternsEnterpriseApplication2012">(Buschmann
-  et al. 1996a; Bass et al. 2003; Fowler 2012)</span>, the MVC paper for
-  Smalltalk-80 <span class="citation"
-  data-cites="krasner1988cookbook">(Krasner 1988)</span>, and industry
-  sources (Microsoft ASP.NET MVC <span class="citation"
-  data-cites="ardalisOverviewASPNET2022">(<span
-  class="nocase">ardalis</span> 2022)</span>, Oracle MVC <span
-  class="citation" data-cites="JavaSEApplication">(<em>Java <span>SE
-  Application Design With MVC</span></em>, n.d.)</span>)</p>
-  <p>Most of the other sources had similar content to these sources.
-  Surprisingly, we could not find an ’official’ or ’standard’ MVC
-  pattern description. Table <a href="#tab:mvc-documentation"
-  data-reference-type="ref"
-  data-reference="tab:mvc-documentation">[tab:mvc-documentation]</a>
-  summarizes the review of these sources under three categories:
-  Structure, Behavior/Dynamics, and Modes of Documentation.</p>
-  <div class="table*">
-  <table style="width:90%;">
-  <colgroup>
-  <col style="width: 15%" />
-  <col style="width: 30%" />
-  <col style="width: 25%" />
-  <col style="width: 20%" />
-  </colgroup>
+  data-cites="Tufte2001 Tufte1990 Tufte1997 Tufte2006">(Tufte 2001,
+  1990, 1997, 2006)</span> and the use of the <code>tufte-book</code>
+  and <code>tufte-handout</code> document classes.</p>
+  <h1 id="the-first-part">The First Part</h1>
+  <h2 id="ch:tufte-design">The Design of Tufte’s Books</h2>
+  <p>of a book are usually divided into three major sections: the front
+  matter (also called preliminary matter or prelim), the main matter
+  (the core text of the book), and the back matter (or end matter).</p>
+  <p>of a book refers to all of the material that comes before the main
+  text. The following table from shows a list of material that appears
+  in the front matter of <em>The Visual Display of Quantitative
+  Information</em>, <em>Envisioning Information</em>, <em>Visual
+  Explanations</em>, and <em>Beautiful Evidence</em> along with its page
+  number. Page numbers that appear in parentheses refer to folios that
+  do not have a printed page number (but they are still counted in the
+  page number sequence).</p>
+  <div class="minipage">
+  <div class="center">
+  <table>
   <thead>
   <tr>
-  <th style="text-align: left;"><em>Documentation source</em></th>
-  <th style="text-align: left;"><em>Structure</em></th>
-  <th style="text-align: left;"><em>Behavior/Dynamics</em></th>
-  <th style="text-align: left;"><em>Modes of documentation</em></th>
+  <th style="text-align: left;"></th>
+  <th colspan="4" style="text-align: center;">Books</th>
   </tr>
   </thead>
   <tbody>
   <tr>
-  <td style="text-align: left;">Pattern-oriented Software architecture
-  <span class="citation" data-cites="BuschmannMeunierEtAl96">(Buschmann
-  et al. 1996b)</span></td>
-  <td style="text-align: left;">Prose to describe each of the components
-  (View, Model, and Controller), Class diagram for each component, C++
-  implementation object diagram</td>
-  <td style="text-align: left;">Two sequence diagrams - one for the
-  scenario where user input changes the model, another for
-  initialization of the components</td>
-  <td style="text-align: left;">Lots of implementation details provided
-  in C++, UML sequence diagrams used, a lot of prose</td>
+  <td style="text-align: left;"><span>2-5</span> Page content</td>
+  <td style="text-align: center;"><em>VDQI</em></td>
+  <td style="text-align: center;"><em>EI</em></td>
+  <td style="text-align: center;"><em>VE</em></td>
+  <td style="text-align: center;"><em>BE</em></td>
   </tr>
   <tr>
-  <td style="text-align: left;">Software Architecture in Practice <span
-  class="citation"
-  data-cites="bassSoftwareArchitecturePractice2003">(Bass et al.
-  2003)</span></td>
-  <td style="text-align: left;">Prose to briefly describe each
-  component, summarized in the form of a table</td>
-  <td style="text-align: left;">A diagram that illustrates the
-  connection among the components and shows actions by the user and by
-  the components</td>
-  <td style="text-align: left;">Very brief description overall,
-  primarily prose (with table) and a diagram</td>
+  <td style="text-align: left;">Blank half title page</td>
+  <td style="text-align: center;">1</td>
+  <td style="text-align: center;">1</td>
+  <td style="text-align: center;">1</td>
+  <td style="text-align: center;">1</td>
   </tr>
   <tr>
-  <td style="text-align: left;">Patterns of enterprise software
-  architecture <span class="citation"
-  data-cites="fowlerPatternsEnterpriseApplication2012">(Fowler
-  2012)</span></td>
-  <td style="text-align: left;">Prose to explain the rationale of MVC,
-  diagram to describe the components and connections</td>
-  <td style="text-align: left;">Prose describes basic behavior</td>
-  <td style="text-align: left;">Very brief, mostly prose, defers to POSA
-  for details</td>
+  <td style="text-align: left;">Frontispiece</td>
+  <td style="text-align: center;">2</td>
+  <td style="text-align: center;">2</td>
+  <td style="text-align: center;">2</td>
+  <td style="text-align: center;">2</td>
   </tr>
   <tr>
-  <td style="text-align: left;">Smalltalk-80 <span class="citation"
-  data-cites="krasner1988cookbook">(Krasner 1988)</span></td>
-  <td style="text-align: left;">Prose to explain the pattern and its
-  components, a detailed diagram that describes the structure as well as
-  some aspects of behavior</td>
-  <td style="text-align: left;">Prose describes basic behavior, labels
-  on the diagram add more details</td>
-  <td style="text-align: left;">Prose, implementation details using
-  Smalltalk objects</td>
+  <td style="text-align: left;">Full title page</td>
+  <td style="text-align: center;">3</td>
+  <td style="text-align: center;">3</td>
+  <td style="text-align: center;">3</td>
+  <td style="text-align: center;">3</td>
   </tr>
   <tr>
-  <td style="text-align: left;">Microsoft ASP.NET MVC <span
-  class="citation" data-cites="ardalisOverviewASPNET2022">(<span
-  class="nocase">ardalis</span> 2022)</span></td>
-  <td style="text-align: left;">Prose to explain the pattern, a diagram
-  for the components</td>
-  <td style="text-align: left;">Prose describes basic behavior</td>
-  <td style="text-align: left;">C# code is used to explain much of the
-  pattern</td>
+  <td style="text-align: left;">Copyright page</td>
+  <td style="text-align: center;">4</td>
+  <td style="text-align: center;">4</td>
+  <td style="text-align: center;">4</td>
+  <td style="text-align: center;">4</td>
   </tr>
   <tr>
-  <td style="text-align: left;">Sun/Oracle MVC <span class="citation"
-  data-cites="JavaSEApplication">(<em>Java <span>SE Application Design
-  With MVC</span></em>, n.d.)</span></td>
-  <td style="text-align: left;">Prose to describe the pattern, a diagram
-  (same as in Bass’s book) is used as well for some aspects of
-  structure</td>
-  <td style="text-align: left;">A diagram that describes the connection
-  among the components and shows actions by the user and by the
-  components</td>
-  <td style="text-align: left;">Prose, diagram, and Implementation
-  details using Java</td>
+  <td style="text-align: left;">Contents</td>
+  <td style="text-align: center;">5</td>
+  <td style="text-align: center;">5</td>
+  <td style="text-align: center;">5</td>
+  <td style="text-align: center;">5</td>
+  </tr>
+  <tr>
+  <td style="text-align: left;">Dedication</td>
+  <td style="text-align: center;">6</td>
+  <td style="text-align: center;">7</td>
+  <td style="text-align: center;">7</td>
+  <td style="text-align: center;">7</td>
+  </tr>
+  <tr>
+  <td style="text-align: left;">Epigraph</td>
+  <td style="text-align: center;">–</td>
+  <td style="text-align: center;">–</td>
+  <td style="text-align: center;">8</td>
+  <td style="text-align: center;">–</td>
+  </tr>
+  <tr>
+  <td style="text-align: left;">Introduction</td>
+  <td style="text-align: center;">7</td>
+  <td style="text-align: center;">9</td>
+  <td style="text-align: center;">9</td>
+  <td style="text-align: center;">9</td>
   </tr>
   </tbody>
   </table>
-  <p><span id="tab:mvc-documentation"
-  data-label="tab:mvc-documentation"></span></p>
   </div>
-  <h1 id="sec:sos">Modeling communicating systems</h1>
-  <p>Given that we are interested in systems that communicate with each
-  other, we make these assumptions for our model: a) Systems communicate
-  with each other by sending and receiving messages, b) Systems have
-  ports. A port is an abstract entity through which messages are sent or
-  received. A port is either an input or output port, but not both. It
-  supports only one message type drawn from a universe of message types,
-  and c) Environment supports two primitive methods to aid
-  communication: <em>send()</em> will send a message via the given
-  output port, and <em>receive()</em> receives a message (possibly empty
-  if there are no messages) from the given input port.</p>
-  <p>A communicating system <span class="math inline">\(S\)</span> is a
-  tuple <span class="math inline">\(\{X, X^0, P, f\}\)</span> where
-  <span class="math inline">\(X\)</span> is the set of states, <span
-  class="math inline">\(X^0\)</span> is the set of initial states, <span
-  class="math inline">\(P\)</span> is the set of ports, <span
-  class="math inline">\(P \subseteq Ports\)</span>, and <span
-  class="math inline">\(f\)</span> is the transition function, <span
-  class="math inline">\(f \subseteq (X\times MessageTypes)\times
-  X\)</span>.</p>
-  <p><span class="math inline">\(MessageTypes\)</span> is the universe
-  of message types, all possible message types used by the system’s
-  ports. <span class="math inline">\(Systems\)</span> is the universe of
-  systems. <span class="math inline">\(Dirs \equiv \{in, out\}\)</span>
-  is an enumeration of possible types of direction associated with a
-  port - in or out.</p>
-  <p><span class="math inline">\(Ports \subseteq Systems \times Dirs
-  \times MessageTypes\)</span>. A port <span
-  class="math inline">\(p\)</span> is modeled as a tuple <span
-  class="math inline">\((s, dir, m)\)</span>, <span
-  class="math inline">\(s \in Systems\)</span>, <span
-  class="math inline">\(dir \in Dirs\)</span>, <span
-  class="math inline">\(m \in MessageTypes\)</span>. The port belongs to
-  the system <span class="math inline">\(s\)</span>, its direction of
-  communication is <span class="math inline">\(dir\)</span>, and it
-  supports message type <span class="math inline">\(m\)</span>. Without
-  losing generality, we assume that only one message type is transmitted
-  or received on a port (if a set of message types needs to be
-  supported, a new message type can be declared as the union of these
-  types).</p>
-  <p><span class="math inline">\(x&#39; = f(x,m)\)</span> where <span
-  class="math inline">\(x&#39;\)</span> is the next state, <span
-  class="math inline">\(f\)</span> is the transition function, <span
-  class="math inline">\(x\)</span> is the current state, and <span
-  class="math inline">\(m\)</span> is the currently received message.
-  The transition function <span class="math inline">\(f\)</span> can be
-  written as guarded commands tuple <span
-  class="math inline">\((&lt;guard&gt;, &lt;command&gt;)\)</span> <span
-  class="citation" data-cites="dijkstra2006ewd472">(Dijkstra
-  2006)</span>. The command is executed if the guard is true in a
-  particular invocation of <span class="math inline">\(f\)</span>. Only
-  one guard should be true in any particular invocation, but if more
-  than one guard is true, any command may be executed. For convenience
-  and brevity, we represent these tuples in the form <em>if
-  &lt;guard&gt; then &lt;command&gt;</em> as the body of the function
-  <span class="math inline">\(f(x,m)\)</span>.</p>
-  <h2 id="modeling-communication-channels">Modeling communication
-  channels</h2>
-  <p>Communication channels can be modeled as IO automata <span
-  class="citation" data-cites="lynch1996distributed">(Lynch
-  1996)</span>, or it can be done as a transition system <span
-  class="citation" data-cites="choppella2021algodynamics">(Choppella et
-  al. 2021)</span>. We define the channel and then show a transition
-  system model.</p>
-  <h3 id="channel"><strong>Channel</strong>:</h3>
-  <p>A channel connects two ports, <span class="math inline">\(C
-  \subseteq Ports \times Ports\)</span>. It is a connection between two
-  compatible ports to achieve unidirectional communication. A channel
-  <span class="math inline">\(c=(p_{out}, p_{in})\)</span> is valid iff
-  these conditions hold: a) <span
-  class="math inline">\(dir_{out}=out\)</span> and <span
-  class="math inline">\(dir_{in} = in\)</span>, where <span
-  class="math inline">\(dir\)</span> is the direction of the port, b)
-  <span class="math inline">\(m_{out} = m_{in}\)</span> where <span
-  class="math inline">\(m\)</span> is the message type of the port, and
-  <span class="math inline">\(p_{out}\)</span> or <span
-  class="math inline">\(p_{in}\)</span> are not part of any other
-  channel.</p>
-  <p>We model the message communication on a channel like a mailbox
-  (with message queues) and model a channel <span
-  class="math inline">\(c\)</span> as a system.<br />
-  <span class="math inline">\(S_c=\{X_c,X^0_c, U_c, f_c\}\)</span> is
-  the system modeling a channel where</p>
-  <div class="description">
-  <p><span class="math inline">\(X_c\)</span> is a tuple <span
-  class="math inline">\((p_{out}, p_{in},mq)\)</span>, <span
-  class="math inline">\(mq\)</span> is the queue to hold the message at
-  input port <span class="math inline">\(p_{in}\)</span>.</p>
-  <p><span class="math inline">\(X^0_c\)</span> is <span
-  class="math inline">\((p_{out}, p_{in},&lt;empty&gt;)\)</span>, queue
-  is empty at initial state.</p>
-  <p><span class="math inline">\(U_c\)</span> is the set of actions
-  supported by the channel, <span class="math inline">\(\{send,
-  receive\}\)</span></p>
-  <p><span class="math inline">\(f_c\)</span> is the transition function
-  - a <span class="math inline">\(send\)</span> action adds the message
-  to the tail of the queue, and a <span
-  class="math inline">\(receive\)</span> action removes the message from
-  the head of the queue.</p>
   </div>
-  <p>However, to keep the overall model simple and focused on the
-  component systems (instead of channels), we make two assumptions: a)
-  The environment makes available two methods to all systems: <span
-  class="math inline">\(send()\)</span> and <span
-  class="math inline">\(receive()\)</span> and b) A message sent on an
-  output port of a channel will be immediately available for receiving
-  at the corresponding input port.</p>
-  <p>Given these assumptions, we can model a channel as a wire rather
-  than a system. We use this channel model when defining an SoS.</p>
-  <p>For notational convenience, we also represent a channel <span
-  class="math inline">\(c\)</span> as <span
-  class="math inline">\(\{s_{out}, s_{in}, m\}\)</span> where <span
-  class="math inline">\(s\)</span> is the system the port belongs to and
-  <span class="math inline">\(m\)</span> is the message type of the
-  ports.</p>
-  <h2 id="system-of-systems-sos">System of Systems (SoS)</h2>
-  <p>When a set of communicating systems <span
-  class="math inline">\(G\)</span> is configured with a set of channels
-  <span class="math inline">\(L\)</span> (systems of <span
-  class="math inline">\(G\)</span> are interconnected using the channels
-  of <span class="math inline">\(L\)</span>), they produce a behavior
-  distinct from the behavior of individual systems. We call this
-  configuration a System of Systems (SoS).</p>
-  <p>An SoS is designed with an expected behavior, which can be captured
-  in terms of specified behaviors and requirements, including any
-  constraints. These drive the choice of individual systems, and the
-  channels and representation of an SoS should also include this
-  information.</p>
-  <p>In this section, we will show how SoS is formed via the composition
-  of component systems. We will also introduce a simpler way to
-  represent an SoS.</p>
-  <p>Given two systems, <span class="math inline">\(S_1=\{X_1,X^0_1,
-  P_1, f_1\}\)</span>, <span class="math inline">\(S_2=\{X_2,X^0_2, P_2,
-  f_2\}\)</span> and a set of channels <span
-  class="math inline">\(L\)</span>, we define a composed system <span
-  class="math inline">\(S_C=\{X_C,X^0_C, P_C, f_C\}\)</span> where</p>
-  <div class="description">
-  <p><span class="math inline">\(X_C = \{X_1,X_2, L\}\)</span>,</p>
-  <p><span class="math inline">\(X^0_C = \{X^0_1,X^0_2,
-  L\}\)</span>,</p>
-  <p><span class="math inline">\(P_C = (P_1 \cup P_2) - P^L\)</span>
-  where <span class="math inline">\(P^L\)</span> is the set of all ports
-  that are part of a channel in <span
-  class="math inline">\(L\)</span>.</p>
-  <p><span class="math inline">\(f_C = f_1 || f_2\)</span> where <span
-  class="math inline">\(||\)</span> represents parallel execution</p>
-  </div>
-  <p>In other words, state space of the composed system is the
-  composition of the states of the individual systems and the set of
-  channels, ports of the composed system are the aggregate of the ports
-  from individual systems that are not part of any channel, and the
-  transition function of the composed system is the parallel execution
-  of transition functions of the component systems. This notion of
-  composition can be extended to finitely many systems.</p>
-  <p>Given the above definition for the composition of communicating
-  systems, we can represent an SoS in a simpler way in terms of the
-  involved systems and channels.</p>
-  <p>An SoS is a tuple <span class="math inline">\((G, L, B)\)</span>
-  where G is the set of component systems, L is the set of channels, and
-  B is the set of expected behaviors.</p>
-  <h3 id="representing-set-of-systems-g">Representing set of systems
-  (<span class="math inline">\(G\)</span>)</h3>
-  <p>This is the list of component systems that are included in this
-  SoS. Each system is defined as its tuple <span
-  class="math inline">\(\{X, X^0, P, f\}\)</span>. For example, if the
-  SoS consists of three component systems <span
-  class="math inline">\(S_1\)</span>, <span
-  class="math inline">\(S_2\)</span> and <span
-  class="math inline">\(S_3\)</span>, then a set of systems <span
-  class="math inline">\(G = \{S_1,S_2,S_3\}\)</span> where <span
-  class="math inline">\(\forall i \in \{1,2,3\}, S_i =
-  \{X_i,{X^0}_i,P_i,f_i\}\)</span>.</p>
-  <h3 id="representing-set-of-channels-l">Representing set of channels
-  (<span class="math inline">\(L\)</span>)</h3>
-  <p>We will represent the channel <span
-  class="math inline">\(c\)</span> in both ways: <span
-  class="math inline">\((s^{out}, s^{in}, m)\)</span> as well as <span
-  class="math inline">\((p^{out}, p^{in})\)</span>. We will enumerate
-  the channels that belong to <span
-  class="math inline">\(L\)</span>.</p>
-  <h3 id="representing-expected-behaviors-b">Representing expected
-  behaviors (<span class="math inline">\(B\)</span>)</h3>
-  <p>We use the notion of Traces and Specifications from Hoare’s CSP
-  formalism <span class="citation"
-  data-cites="hoare1985communicating">(<span class="nocase">Hoare et
-  al.</span> 1985)</span> to capture the expected behavior. We capture
-  the specified behavior using Traces and use Specifications for
-  capturing requirements and constraints. Behavior <span
-  class="math inline">\(B = T \cup R\)</span> where <span
-  class="math inline">\(T\)</span> is the set of valid traces of the SoS
-  and <span class="math inline">\(R\)</span> is a set of specifications
-  captured as conditions on these traces.</p>
-  <p><strong>Example Trace</strong>: <span
-  class="math inline">\(&lt;read_{C1}, readresp_{C2}&gt;\)</span> is an
-  example trace - it represents a trace where message ’read’ on channel
-  C1 was observed, followed by a message ’readresp’ on channel C2.</p>
-  <p><strong>Example Specification</strong>: <span
-  class="math inline">\(\#(tr \downarrow \{read_{C1}\}) == \#(tr
-  \downarrow \{readresp_{C2}\})\)</span> is an example of a
-  specification that the number of read messages must be equal to the
-  number of readresp messages that are observed. tr represents a
-  particular trace, # tr <span class="math inline">\(\downarrow\)</span>
-  c denotes the number of occurrences in tr of c.</p>
-  <p>The following section illustrates these concepts with an
-  example.</p>
-  <h1 id="sec:sosexample">A System of Systems example</h1>
-  <p>Let us consider a weather tracking system, M, which stores the
-  temperature of various cities in a state. C is the system at a
-  particular city. It reads the temperature of all the other cities
-  every hour from M and shows it to the operator. It also measures the
-  local temperature and sends the new temperature to M. When M receives
-  a request for the temperature reading; it sends the details to the
-  requester, C in this case. When it gets a new temperature to store, it
-  notifies the notifier system B so that all other client systems
-  (including C) can be informed about the update.</p>
-  <p>We model this as an SoS, as shown in Figure <a
-  href="#fig:sosexample" data-reference-type="ref"
-  data-reference="fig:sosexample">2</a>. M manages all the data. C sends
-  read or update requests to M. M directly responds to the read request.
-  M fulfills update requests and then informs B about the update so that
-  it can further notify C (and other client systems).</p>
-  <figure id="fig:sosexample">
-  <img src="images/sosexample.png" style="width:100.0%" />
-  <figcaption>SoS Example</figcaption>
-  </figure>
-  <h2 id="set-of-systems-g">Set of Systems (G)</h2>
-  <p><span class="math inline">\(G = \{M, C, B\}\)</span>, three
-  component systems are part of this SoS where</p>
-  <ul>
-  <li><p>M - The data system</p></li>
-  <li><p>C - The system that reads and updates the data system</p></li>
-  <li><p>B - The notifier system for informing about changes to the data
-  system</p></li>
-  </ul>
-  <h3 id="system-m">System M</h3>
-  <p><span class="math inline">\(\{X_M, X^0_M, P_M, f_M\}\)</span></p>
-  <p><u>States</u></p>
-  <p>The state supports the following methods:</p>
-  <ul>
-  <li><p>processRead(<span class="math inline">\(m\)</span>) - Performs
-  the read operation and updates the state variables so that a
-  subsequent read response message can be sent.</p></li>
-  <li><p>processUpdate(<span class="math inline">\(m\)</span>) -
-  Performs the update operation and updates the state variables so that
-  a subsequent change message can be sent.</p></li>
-  </ul>
-  <p><u>Ports</u></p>
-  <ul>
-  <li><p><span class="math inline">\(MP1 =(M, in,
-  \{read,update\})\)</span></p></li>
-  <li><p><span class="math inline">\(MP2 =(M, out,
-  \{change\})\)</span></p></li>
-  <li><p><span class="math inline">\(MP3 =(M, out,
-  \{readresp\})\)</span></p></li>
-  </ul>
-  <p><u>Transition function</u></p>
-  <pre><code>f(x, m) = 
-    if (m is read) then 
-        processRead(m)
-        send(readresp, MP3)
-    if (m is update) then
-        processUpdate(m)
-        send(change, MP2)</code></pre>
-  <h3 id="system-c">System C</h3>
-  <p><span class="math inline">\(\{X_C, X^0_C, P_C, f_C\}\)</span></p>
-  <p><u>States</u></p>
-  <p>The state supports the following methods:</p>
-  <ul>
-  <li><p>processReadresponse(<span class="math inline">\(m\)</span>) -
-  Processes the read response and updates the state.</p></li>
-  <li><p>processNotify(<span class="math inline">\(m\)</span>) -
-  Processes the notify message and updates the state.</p></li>
-  </ul>
-  <p><u>Ports</u></p>
-  <ul>
-  <li><p><span class="math inline">\(CP1 =(C, in,
-  \{readresp\})\)</span></p></li>
-  <li><p><span class="math inline">\(CP2 =(C, in,
-  \{notify\})\)</span></p></li>
-  <li><p><span class="math inline">\(CP3 =(C, out,
-  \{read,update\})\)</span></p></li>
-  </ul>
-  <p><u>Transition function</u></p>
-  <pre><code>f(x, m) = 
-    if (m is readresp) then 
-        processReadresponse(m)
-    if (m is notify) then
-        processNotify(m)</code></pre>
-  <h3 id="system-b">System B</h3>
-  <p><span class="math inline">\(\{X_B, X^0_B, P_B, f_B\}\)</span></p>
-  <p><u>States</u></p>
-  <p>The state supports the following methods:</p>
-  <ul>
-  <li><p>processChange(<span class="math inline">\(m\)</span>) -
-  Processes the change message and updates the state so that a
-  subsequent notify can be sent.</p></li>
-  </ul>
-  <p><u>Ports</u></p>
-  <ul>
-  <li><p><span class="math inline">\(BP1 =(B, in,
-  \{change\})\)</span></p></li>
-  <li><p><span class="math inline">\(BP2 =(B, out,
-  \{notify\})\)</span></p></li>
-  </ul>
-  <p><u>Transition function</u></p>
-  <pre><code>f(x, m) = 
-    if (m is change) then 
-        processChange(m)
-        send(notify, BP2)</code></pre>
-  <h2 id="set-of-channels-l">Set of Channels (L)</h2>
-  <p>There are four channels as part of this SoS:</p>
-  <ul>
-  <li><p><span class="math inline">\(C1 \equiv (CP3, MP1) \equiv (C, M,
-  \{read, update\})\)</span></p></li>
-  <li><p><span class="math inline">\(C2 \equiv (MP3, CP1) \equiv (M, C,
-  \{readresp\})\)</span></p></li>
-  <li><p><span class="math inline">\(C3 \equiv (MP2, BP1) \equiv (M, B,
-  \{change\})\)</span></p></li>
-  <li><p><span class="math inline">\(C4 \equiv (BP2, CP2) \equiv (B, C,
-  \{notify\})\)</span></p></li>
-  </ul>
-  <h2 id="expected-behavior-of-sos-b">Expected Behavior of SoS (B)</h2>
-  <p><span class="math inline">\(B=T \cup R\)</span></p>
-  <h3 id="traces-t">Traces (<span class="math inline">\(T\)</span>)</h3>
-  <p>There are two important traces of this SoS:</p>
-  <ul>
-  <li><p><span class="math inline">\(READTRACE \equiv &lt;read_{C1},
-  readresp_{C2}&gt;\)</span></p></li>
-  <li><p><span class="math inline">\(UPDATETRACE \equiv &lt;update_{C1},
-  change_{C3}, notify_{C4}&gt;\)</span></p></li>
-  </ul>
-  <p><span class="math inline">\(READTRACE\)</span> captures the read
-  scenario: C sends a read request and M responds with a readresp. <span
-  class="math inline">\(UPDATETRACE\)</span> captures the update
-  scenario: C sends an update request, M sends a change request to B,
-  and B sends a notify to C.</p>
-  <h3 id="requirements-and-constraints-r">Requirements and Constraints
-  (<span class="math inline">\(R\)</span>)</h3>
-  <p>Two specifications need to be honored by all the traces of the
-  SoS:</p>
-  <ul>
-  <li><p><span class="math inline">\(READSPEC \equiv  \#(tr \downarrow
-  \{read_{C1}\}) == \#(tr \downarrow
-  \{readresp_{C2}\})\)</span></p></li>
-  <li><p><span class="math inline">\(UPDATESPEC \equiv \#(tr \downarrow
-  \{update_{C1}\}) == \#(tr \downarrow
-  \{notify_{C4}\})\)</span></p></li>
-  </ul>
-  <p>tr represents a particular trace, # tr <span
-  class="math inline">\(\downarrow\)</span> c denotes the number of
-  occurrences in tr of c <span class="citation"
-  data-cites="hoare1985communicating">(<span class="nocase">Hoare et
-  al.</span> 1985)</span>.</p>
-  <p><span class="math inline">\(READSPEC\)</span> specifies that the
-  count of read and readresp should match. <span
-  class="math inline">\(UPDATESPEC\)</span> specifies that counts of
-  update and notify match. Notice that other constraints can also be
-  specified: count of change and notify must match too; it is up to the
-  modeler to choose the traces they consider for inclusion. Also, notice
-  that if there are other ways in which System M can be updated (which
-  will trigger a change message to B and a notify from B), <span
-  class="math inline">\(UPDATESPEC\)</span> will be violated. In other
-  words, <span class="math inline">\(UPDATESPEC\)</span> poses the
-  requirement that System M can only be updated by System C.</p>
-  <p>By making the traces, constraints, and requirements explicit like
-  this, we make the dynamics clearer and more comprehensible.</p>
-  <h1 id="sec:sos-mvc">SoS model of MVC</h1>
-  <p>To model MVC as SoS, we start by thinking of MVC as a transition
-  system <span class="citation"
-  data-cites="choppella2021algodynamics">(Choppella et al. 2021)</span>,
-  which the user interacts with, see Figure <a href="#fig:mvc-system"
-  data-reference-type="ref" data-reference="fig:mvc-system">3</a>. We
-  can model user interaction as <span class="math inline">\(u\)</span>
-  (action) and <span class="math inline">\(y\)</span> (observable); the
-  user provides their inputs through <span
-  class="math inline">\(u\)</span> and receives the updated view through
-  <span class="math inline">\(y\)</span>. This model supports UC1 and
-  UC2, as described in the previous section.</p>
-  <figure id="fig:mvc-system" data-latex-placement="ht">
-  <img src="images/mvcsostoplevel.png" style="width:50.0%" />
-  <figcaption>MVC as a system. <span class="math inline">\(u\)</span>
-  models the action while <span class="math inline">\(y\)</span> models
-  the observable for user interactions. </figcaption>
-  </figure>
-  <p>We decompose this top-level system into a System of Systems (SoS)
-  comprising four component systems. In addition to View, Controller,
-  and Model, we use an Observer system for notifications. Fig <a
-  href="#fig:mvcsosbass" data-reference-type="ref"
-  data-reference="fig:mvcsosbass">4</a> shows the system model of the
-  MVC pattern in terms of systems. The behavior of View and Controller
-  is the same as described in Section <a href="#subsec:mvcoverview"
-  data-reference-type="ref" data-reference="subsec:mvcoverview">3.1</a>.
-  Instead of sending notifications directly, the Model sends an update
-  message to the Observer system, which notifies the View system.</p>
-  <figure id="fig:mvcsosbass" data-latex-placement="h">
-  <img src="images/mvcsosbassuy.png" />
-  <figcaption>MVC SoS <span class="citation"
-  data-cites="bassSoftwareArchitecturePractice2003">(Bass et al.
-  2003)</span>. The userinput and useroutput message types are the ports
-  for user interactions from Figure <a href="#fig:mvc-system"
-  data-reference-type="ref" data-reference="fig:mvc-system">3</a>. These
-  ports are not part of any channel in MVC SoS and are handled directly
-  by View.</figcaption>
-  </figure>
-  <p>We model SoS as the tuple <span class="math inline">\((G, L,
-  B)\)</span>; following sections detail out <span
-  class="math inline">\(G\)</span>, <span
-  class="math inline">\(L\)</span>, and <span
-  class="math inline">\(B\)</span>.</p>
-  <h2 id="set-of-systems-g-1">Set of systems (G)</h2>
-  <p>Four systems are part of this SoS.</p>
-  <p><span class="math inline">\(G = \{V, C, M, B\}\)</span></p>
-  <ul>
-  <li><p>V - The View system renders the UI by fetching data from the
-  Model and forwarding user action to the Controller. The ports with
-  userinput and useroutput message types are for user interactions,
-  while the messaging ports connect to other components of the MVC
-  system.</p></li>
-  <li><p>C - The Controller system processes all user actions and sends
-  messages to the Model or the View for further handling.</p></li>
-  <li><p>M - The Model system manages all access to data and responds to
-  read and update requests.</p></li>
-  <li><p>B - The Observer system notifies the View about changes in the
-  Model.</p></li>
-  </ul>
-  <p>Section <a href="#subsec:sosmvc-components"
-  data-reference-type="ref"
-  data-reference="subsec:sosmvc-components">7.4</a> provides the details
-  of each of these systems.</p>
-  <h2 id="set-of-channels-l-1">Set of channels (L)</h2>
-  <p>There are seven channels in the SoS.</p>
-  <ul>
-  <li><p><span class="math inline">\(C1 \equiv (VP4,CP1) \equiv (V, C,
-  \{useraction\})\)</span></p></li>
-  <li><p><span class="math inline">\(C2 \equiv (VP5,MP2) \equiv (V, M,
-  \{read\})\)</span></p></li>
-  <li><p><span class="math inline">\(C3 \equiv (CP3,VP1) \equiv (C, V,
-  \{viewupdate\})\)</span></p></li>
-  <li><p><span class="math inline">\(C4 \equiv (CP2,MP1) \equiv (C, M,
-  \{modelupdate\})\)</span></p></li>
-  <li><p><span class="math inline">\(C5 \equiv (MP3,BP1) \equiv (M, B,
-  \{change\})\)</span></p></li>
-  <li><p><span class="math inline">\(C6 \equiv (MP4,VP3) \equiv (M, V,
-  \{readresponse\})\)</span></p></li>
-  <li><p><span class="math inline">\(C7 \equiv (BP2,VP2) \equiv (B, V,
-  \{notify\})\)</span></p></li>
-  </ul>
-  <h2 id="expected-behavior-of-sos-b-1">Expected Behavior of SoS
-  (B)</h2>
-  <p><span class="math inline">\(B=T \cup R\)</span> where <span
-  class="math inline">\(T\)</span> captures the traces that describe the
-  behavior, and <span class="math inline">\(R\)</span> captures
-  requirements and constraints on the behavior.</p>
-  <h3 id="traces-t-1">Traces (<span
-  class="math inline">\(T\)</span>)</h3>
-  <p>There are two important traces of the system:</p>
-  <ol>
-  <li><p><span class="math inline">\(MODELUPDATETRACE \equiv\)</span>
-  &lt;<span class="math inline">\(useraction_{C1}\)</span>, <span
-  class="math inline">\(modelupdate_{C4}\)</span>, <span
-  class="math inline">\(change_{C5}\)</span>, <span
-  class="math inline">\(notify_{C7}\)</span>, <span
-  class="math inline">\(read_{C2}\)</span>, <span
-  class="math inline">\(readresponse_{C6}\)</span>&gt;</p></li>
-  <li><p><span class="math inline">\(VIEWUPDATETRACE \equiv\)</span>
-  &lt;<span class="math inline">\(useraction_{C1}\)</span>, <span
-  class="math inline">\(viewupdate_{C3}\)</span>, <span
-  class="math inline">\(read_{C2}\)</span>, <span
-  class="math inline">\(readresponse_{C6}\)</span>&gt;</p></li>
-  </ol>
-  <p><span class="math inline">\(MODELUPDATETRACE\)</span> captures a
-  user action that results in an update to the Model: useraction message
-  to Controller on C1, followed by modelupdate message to Model on C4,
-  change message to Observer, notify message to View, read the message
-  to Model, and finally readresponse message to View on C6.<br />
-  Similarly, <span class="math inline">\(VIEWUPDATETRACE\)</span>
-  captures a user action that results in an update to the View.</p>
-  <h3 id="requirements-and-constraints-r-1">Requirements and Constraints
-  (<span class="math inline">\(R\)</span>)</h3>
-  <p>There are three important specifications:</p>
-  <ol>
-  <li><p><span class="math inline">\(USERACTIONSPEC \equiv\)</span>
-  <span class="math inline">\(\#(tr \downarrow \{useraction_{C1}\}) \\
-  == \#(tr \downarrow \{modelupdate_{C4},
-  viewupdate_{C3}\})\)</span></p></li>
-  <li><p><span class="math inline">\(MODELUPDATESPEC \equiv\)</span>
-  <span class="math inline">\(\#(tr \downarrow \{modelupdate_{C4}\}) \\
-  == \#(tr \downarrow \{change_{C5}\})\)</span></p></li>
-  <li><p><span class="math inline">\(READTRACE \equiv\)</span> <span
-  class="math inline">\(\#(tr \downarrow \{read_{C2}\}) \\ == \#(tr
-  \downarrow \{viewupdate_{C3}, notify_{C7}\}))\)</span></p></li>
-  </ol>
-  <p>tr represents a particular trace, # tr <span
-  class="math inline">\(\downarrow\)</span> {c1,c2} denotes the number
-  of occurrences in tr of any element of {c1,c2} <span class="citation"
-  data-cites="hoare1985communicating">(<span class="nocase">Hoare et
-  al.</span> 1985)</span>.</p>
-  <p><span class="math inline">\(USERACTIONSPEC\)</span> specifies that
-  every user action must result in either a Model update or a View
-  update. <span class="math inline">\(MODELUPDATESPEC\)</span> specifies
-  that every Model update request must result in a change notification.
-  <span class="math inline">\(READSPEC\)</span> specifies that every
-  read request must result from either a viewupdate received or a
-  notification received.</p>
-  <h2 id="subsec:sosmvc-components">Component Systems description</h2>
-  <h3 id="controller-c">Controller (C)</h3>
-  <p>C = <span class="math inline">\(\{X_C, X^0_C, P_C,
-  f_C\}\)</span></p>
-  <p><u>States</u></p>
-  <p>The state supports the following method:</p>
-  <ul>
-  <li><p>processUseraction(<span class="math inline">\(m\)</span>)
-  processes the user action and updates the state depending on whether
-  it is a viewaction or a modelaction.</p></li>
-  </ul>
-  <p><u>Ports</u></p>
-  <ul>
-  <li><p><span class="math inline">\(CP1 = (C, in,
-  \{useraction\})\)</span></p></li>
-  <li><p><span class="math inline">\(CP2 = (C, out,
-  \{modelupdate\})\)</span></p></li>
-  <li><p><span class="math inline">\(CP3 = (C, out,
-  \{viewupdate\})\)</span></p></li>
-  </ul>
-  <p><u>Transition function</u></p>
-  <pre><code>f(x, m) = 
-    if (m is useraction) then 
-        if (processUseraction(m) == modelupdate) then
-            send(modelupdate, CP2)
-        else
-            send(viewupdate, CP3)</code></pre>
-  <h3 id="model-m">Model (M)</h3>
-  <p>M = <span class="math inline">\(\{X_M, X^0_M, P_M,
-  f_M\}\)</span></p>
-  <p><u>States</u></p>
-  <p>The state supports the following methods:</p>
-  <ul>
-  <li><p>processRead(<span class="math inline">\(m\)</span>) processes
-  the incoming read request by reading from the data source. It also
-  updates the state so that a subsequent readresponse can be
-  sent.</p></li>
-  <li><p>processUpdate(<span class="math inline">\(m\)</span>) processes
-  the incoming update request by updating the data source. It also
-  updates the state so that a subsequent change message can be
-  sent.</p></li>
-  </ul>
-  <p><u>Ports</u></p>
-  <ul>
-  <li><p><span class="math inline">\(MP1 = (M, in,
-  \{modelupdate\})\)</span></p></li>
-  <li><p><span class="math inline">\(MP2 = (M, in,
-  \{read\})\)</span></p></li>
-  <li><p><span class="math inline">\(MP3 = (M, out,
-  \{change\})\)</span></p></li>
-  <li><p><span class="math inline">\(MP4 = (M, out,
-  \{readresponse\})\)</span></p></li>
-  </ul>
-  <p><u>System Transition function</u></p>
-  <pre><code>f(x, m) = 
-    if (m is read) then 
-        processRead(m)
-        send(readresp, MP4)
-    if (m is modelupdate) then
-        processUpdate(m)
-        send(change, MP3)</code></pre>
-  <h3 id="view-v">View (V)</h3>
-  <p>V = <span class="math inline">\(\{X_V, X^0_V, P_V, f_V
-  \}\)</span></p>
-  <p><u>States</u></p>
-  <p>The state supports the following methods:</p>
-  <ul>
-  <li><p>processReadresponse(<span class="math inline">\(m\)</span>)
-  processes a read response and updates the state. This will possibly
-  impact the rendering of the view for the user.</p></li>
-  <li><p>updateViewstate() updates the relevant state values that
-  represent what the user sees displayed on their system; we call it
-  displaystate.</p></li>
-  <li><p>renderView() renders the view for the user based on the current
-  displaystate.</p></li>
-  <li><p>processNotify(<span class="math inline">\(m\)</span>) processes
-  a notify message and updates the state so that a read request can be
-  sent to the model to fetch the details of this model update
-  subsequently.</p></li>
-  <li><p>processViewupdate(<span class="math inline">\(m\)</span>)
-  processes a viewupdate request and updates the state so that a
-  subsequent read request can be sent to the model for the updated
-  view.</p></li>
-  <li><p>processUserinput(<span class="math inline">\(m\)</span>)
-  processes a userinput message from outside the system and updates the
-  state so that a useraction request can be sent to the
-  controller.</p></li>
-  </ul>
-  <p><u>Ports</u></p>
-  <ul>
-  <li><p><span class="math inline">\(VP1 = (V, in,
-  \{viewupdate\})\)</span></p></li>
-  <li><p><span class="math inline">\(VP2 = (V, in,
-  \{notify\})\)</span></p></li>
-  <li><p><span class="math inline">\(VP3 = (V, in,
-  \{readresponse\})\)</span></p></li>
-  <li><p><span class="math inline">\(VP4 = (V, out,
-  \{useraction\})\)</span></p></li>
-  <li><p><span class="math inline">\(VP5 = (V, out,
-  \{read\}\)</span></p></li>
-  <li><p><span class="math inline">\(VP6 = (V, in,
-  \{userinput\}\)</span></p></li>
-  <li><p><span class="math inline">\(VP7 = (V, out,
-  \{useroutput\}\)</span></p></li>
-  </ul>
-  <p><u>Transition function</u></p>
-  <pre><code>f(x, m) = 
-    if (m is viewupdate) then 
-        processViewupdate(m)
-        send(read, VP5)
-    if (m is notify) then
-        processNotify(m)
-        send(read, VP5)
-    if (m is readresponse) then
-        processReadresponse(m)
-        updateViewstate()
-        send(useroutput,VP7)
-    if (m is userinput) then
-        processUserinput(m)
-        send(useraction, VP4)
-    </code></pre>
-  <h3 id="observer-o">Observer (O)</h3>
-  <p>B = <span class="math inline">\(\{X_B, X^0_B, P_B,
-  f_B\}\)</span></p>
-  <p><u>States</u></p>
-  <p>The state supports the following method:</p>
-  <ul>
-  <li><p>processChange(<span class="math inline">\(m\)</span>) -
-  Processes the change message and updates the state so that a
-  subsequent notify can be sent to the View system.</p></li>
-  </ul>
-  <p><u>Ports</u></p>
-  <ul>
-  <li><p><span class="math inline">\(BP1 = (B, in,
-  \{change\})\)</span></p></li>
-  <li><p><span class="math inline">\(BP2 = (B, out,
-  \{notify\})\)</span></p></li>
-  </ul>
-  <p><u>Transition function</u></p>
-  <pre><code>f(x, m) = 
-    if (m is change) then 
-        processChange(m)
-        send(notify, BP2)</code></pre>
-  <h1 id="sec:analysis">Analysis and Results</h1>
-  <h2 id="subsec:pattern-review">RQ1: Pattern description benchmark</h2>
-  <p>"<em>Which source of documentation of the MVC pattern description
-  can be considered a benchmark?</em>"</p>
-  <p>Based on the data in Table <a href="#tab:benchmark"
-  data-reference-type="ref"
-  data-reference="tab:benchmark">[tab:benchmark]</a> (Section <a
-  href="#sec:pattern-benchmark" data-reference-type="ref"
-  data-reference="sec:pattern-benchmark">4</a>), POSA <span
-  class="citation"
-  data-cites="buschmannPatternOrientedSoftwareArchitecture1996">(Buschmann
-  et al. 1996a)</span> stands out as the one having the best
-  documentation of the MVC pattern - it provides a reasonable amount of
-  details on the elements and their behavior. It uses a UML sequence
-  diagram to capture the dynamics of the pattern.</p>
-  <p>We conclude that POSA <span class="citation"
-  data-cites="buschmannPatternOrientedSoftwareArchitecture1996">(Buschmann
-  et al. 1996a)</span> is the benchmark for MVC pattern description.</p>
-  <h2 id="subsec:comparision">RQ2: Quality of the benchmark </h2>
-  <p>"<em>Is the benchmark high-quality and fit for the needs of novice
-  engineers?</em>"</p>
-  <p>We want to evaluate the benchmark pattern description in POSA <span
-  class="citation"
-  data-cites="buschmannPatternOrientedSoftwareArchitecture1996">(Buschmann
-  et al. 1996a)</span> against the evaluation criteria laid out in
-  Section <a href="#subsec:description-components"
-  data-reference-type="ref"
-  data-reference="subsec:description-components">2.1</a> Q1 to Q4, and
-  F1 to F3. Table <a href="#tab:posa-sos-compare"
-  data-reference-type="ref"
-  data-reference="tab:posa-sos-compare">[tab:posa-sos-compare]</a>
-  summarizes the evaluation.</p>
-  <p>Even though POSA <span class="citation"
-  data-cites="buschmannPatternOrientedSoftwareArchitecture1996">(Buschmann
-  et al. 1996a)</span> provides a good description, reliance on C++ for
-  many of the behavioral details of the pattern hinders understanding
-  and can pose a challenge for novice engineers. Some details of the
-  dynamics are not readily apparent from the prose or UML diagram and
-  are embedded in the code. The descriptions do not use a higher level
-  of abstraction. Some requirements and constraints are mentioned in
-  prose in some cases but not made explicit. Overall, we conclude that
-  this is not a high-quality and fit description for the needs of a
-  novice engineer.</p>
-  <div class="table*">
-  <table style="width:93%;">
-  <colgroup>
-  <col style="width: 12%" />
-  <col style="width: 25%" />
-  <col style="width: 28%" />
-  <col style="width: 28%" />
-  </colgroup>
+  <p>The design of the front matter in Tufte’s books varies slightly
+  from the traditional design of front matter. First, the pages in front
+  matter are traditionally numbered with lowercase roman numerals
+  (<em>e.g.</em>, i, ii, iii, iv, …). Second, the front matter page
+  numbering sequence is usually separate from the main matter page
+  numbering. That is, the page numbers restart at 1 when the main matter
+  begins. In contrast, Tufte has enumerated his pages with arabic
+  numerals that share the same page counting sequence as the main
+  matter.</p>
+  <p>There are also some variations in design across Tufte’s four books.
+  The page opposite the full title page (labeled “frontispiece” in the
+  above table) has different content in each of the books. In <em>The
+  Visual Display of Quantitative Information</em>, this page is blank;
+  in <em>Envisioning Information</em> and <em>Visual Explanations</em>,
+  this page holds a frontispiece; and in <em>Beautiful Evidence</em>,
+  this page contains three epigraphs.</p>
+  <p>The dedication appears on page 6 in <em>VDQI</em>(opposite the
+  introduction), and is placed on its own spread in the other books. In
+  <em>VE</em>, an epigraph shares the spread with the opening page of
+  the introduction.</p>
+  <p>None of the page numbers (folios) of the front matter are expressed
+  except in <em>BE</em>, where the folios start to appear on the
+  dedication page.</p>
+  <p>of each of the books varies slightly in design. In all the books,
+  the author’s name appears at the top of the page, the title it set
+  just above the center line, and the publisher is printed along the
+  bottom margin. Some of the differences are outlined in the following
+  table.</p>
+  <div class="center">
+  <table>
   <thead>
   <tr>
-  <th style="text-align: left;">Criteria</th>
-  <th style="text-align: left;">POSA</th>
-  <th style="text-align: left;">POSA Gaps based on rubric</th>
-  <th style="text-align: left;">How the SoS Model bridges the gap</th>
+  <th style="text-align: left;">Feature</th>
+  <th style="text-align: left;"><em>VDQI</em></th>
+  <th style="text-align: left;"><em>EI</em></th>
+  <th style="text-align: left;"><em>VE</em></th>
+  <th style="text-align: left;"><em>BE</em></th>
   </tr>
   </thead>
   <tbody>
   <tr>
-  <td style="text-align: left;">Q1: Elements of the pattern</td>
-  <td style="text-align: left;">Three components (Model, View,
-  Controller) are listed and described.</td>
-  <td style="text-align: left;">Observer is not included in the list and
-  is only mentioned in the code, which makes it hard to decipher.</td>
-  <td style="text-align: left;">Four component systems are listed (View,
-  Model, Controller, Observer) and included as part of SoS
-  definition</td>
+  <td style="text-align: left;">Author</td>
+  <td style="text-align: left;"></td>
+  <td style="text-align: left;"></td>
+  <td style="text-align: left;"></td>
+  <td style="text-align: left;"></td>
   </tr>
   <tr>
-  <td style="text-align: left;">Q2: Connections among elements</td>
-  <td style="text-align: left;">Connections are mentioned in terms of
-  collaborators in the class diagram,</td>
-  <td style="text-align: left;">Connection information within the class
-  diagram doesn’t make it apparent. Attributes of connection are not
-  elaborated either.</td>
-  <td style="text-align: left;">Connections are shown using a connection
-  diagram with channels, also explicitly included as part of the SoS
-  definition</td>
+  <td style="text-align: left;">Typeface</td>
+  <td style="text-align: left;">serif</td>
+  <td style="text-align: left;">serif</td>
+  <td style="text-align: left;">serif</td>
+  <td style="text-align: left;">sans serif</td>
   </tr>
   <tr>
-  <td style="text-align: left;">Q3: Behavior of the individual
-  elements</td>
-  <td style="text-align: left;">The behaviors of individual elements are
-  described in the implementation section, but the design decisions are
-  not apparent.</td>
-  <td style="text-align: left;">The behavior of individual elements is
-  not specified clearly, so there is a chance that someone misses a
-  particular behavior.</td>
-  <td style="text-align: left;">Each system is defined as a
-  communicating system and uses a six-tuple format. The transition
-  function of each element captures the dynamics and behavior of the
-  element</td>
+  <td style="text-align: left;">Style</td>
+  <td style="text-align: left;">italics</td>
+  <td style="text-align: left;">italics</td>
+  <td style="text-align: left;">italics</td>
+  <td style="text-align: left;">upright, caps</td>
   </tr>
   <tr>
-  <td style="text-align: left;">Q4: Behavior of the overall system</td>
-  <td style="text-align: left;">Two behaviors are identified: 1) user
-  input resulting in model update and 2) initialization of the three
-  components. Two constraints are indirectly mentioned, embedded in
-  prose: 1) There can be multiple views for a model, and 2) There is one
-  Controller for every model.</td>
-  <td style="text-align: left;">The constraints and requirements should
-  have been captured more clearly.</td>
-  <td style="text-align: left;">The behavior of the overall system is
-  composed of the behavior of each element and the messages flowing
-  through the connections, which are captured as the Behavior of SoS
-  using Traces (CSP), which makes it clear and unambiguous.</td>
+  <td style="text-align: left;">Size</td>
+  <td style="text-align: left;">24 pt</td>
+  <td style="text-align: left;">20 pt</td>
+  <td style="text-align: left;">20 pt</td>
+  <td style="text-align: left;">20 pt</td>
   </tr>
   <tr>
-  <td style="text-align: left;">F1: Level of abstraction</td>
-  <td style="text-align: left;">Details like class objects, their
-  initialization, and behavior in code are predominant, with minimal
-  reference to higher-level components and systems to describe the
-  behavior.</td>
-  <td style="text-align: left;">Higher level constructs (which are
-  easier to follow), like components and systems messaging, are not
-  used.</td>
-  <td style="text-align: left;">The model is described at a high level
-  of abstraction using components and messages</td>
+  <td style="text-align: left;">Title</td>
+  <td style="text-align: left;"></td>
+  <td style="text-align: left;"></td>
+  <td style="text-align: left;"></td>
+  <td style="text-align: left;"></td>
   </tr>
   <tr>
-  <td style="text-align: left;">F2: Modes of documentation</td>
-  <td style="text-align: left;">Most of the description is prose and C++
-  code</td>
-  <td style="text-align: left;">Could have used mathematical notation or
-  pseudocode to describe the behavior; C++ implementation details become
-  hard to follow.</td>
-  <td style="text-align: left;">The modes of documentation are
-  predominantly set-theoretic, precise pseudocode and occasionally a
-  specification language <span class="citation"
-  data-cites="hoare1985communicating">(<span class="nocase">Hoare et
-  al.</span> 1985)</span></td>
+  <td style="text-align: left;">Typeface</td>
+  <td style="text-align: left;">serif</td>
+  <td style="text-align: left;">serif</td>
+  <td style="text-align: left;">serif</td>
+  <td style="text-align: left;">sans serif</td>
   </tr>
   <tr>
-  <td style="text-align: left;">F3: Vocabulary</td>
-  <td style="text-align: left;">Prose and C++</td>
-  <td style="text-align: left;">While prose is easy to learn, it is not
-  precise. C++, or any programming language, has an extensive
-  vocabulary.</td>
-  <td style="text-align: left;">The vocabulary is small (the six tuples
-  of communicating systems, three tuples of System of Systems, a subset
-  of Hoare’s Specification language <span class="citation"
-  data-cites="hoare1985communicating">(<span class="nocase">Hoare et
-  al.</span> 1985)</span>)</td>
+  <td style="text-align: left;">Style</td>
+  <td style="text-align: left;">upright</td>
+  <td style="text-align: left;">italics</td>
+  <td style="text-align: left;">upright</td>
+  <td style="text-align: left;">upright, caps</td>
+  </tr>
+  <tr>
+  <td style="text-align: left;">Size</td>
+  <td style="text-align: left;">36 pt</td>
+  <td style="text-align: left;">48 pt</td>
+  <td style="text-align: left;">48 pt</td>
+  <td style="text-align: left;">36 pt</td>
+  </tr>
+  <tr>
+  <td style="text-align: left;">Subtitle</td>
+  <td style="text-align: left;"></td>
+  <td style="text-align: left;"></td>
+  <td style="text-align: left;"></td>
+  <td style="text-align: left;"></td>
+  </tr>
+  <tr>
+  <td style="text-align: left;">Typeface</td>
+  <td style="text-align: left;">–</td>
+  <td style="text-align: left;">–</td>
+  <td style="text-align: left;">serif</td>
+  <td style="text-align: left;">–</td>
+  </tr>
+  <tr>
+  <td style="text-align: left;">Style</td>
+  <td style="text-align: left;">–</td>
+  <td style="text-align: left;">–</td>
+  <td style="text-align: left;">upright</td>
+  <td style="text-align: left;">–</td>
+  </tr>
+  <tr>
+  <td style="text-align: left;">Size</td>
+  <td style="text-align: left;">–</td>
+  <td style="text-align: left;">–</td>
+  <td style="text-align: left;">20 pt</td>
+  <td style="text-align: left;">–</td>
+  </tr>
+  <tr>
+  <td style="text-align: left;">Edition</td>
+  <td style="text-align: left;"></td>
+  <td style="text-align: left;"></td>
+  <td style="text-align: left;"></td>
+  <td style="text-align: left;"></td>
+  </tr>
+  <tr>
+  <td style="text-align: left;">Typeface</td>
+  <td style="text-align: left;">sans serif</td>
+  <td style="text-align: left;">–</td>
+  <td style="text-align: left;">–</td>
+  <td style="text-align: left;">–</td>
+  </tr>
+  <tr>
+  <td style="text-align: left;">Style</td>
+  <td style="text-align: left;">upright, caps</td>
+  <td style="text-align: left;">–</td>
+  <td style="text-align: left;">–</td>
+  <td style="text-align: left;">–</td>
+  </tr>
+  <tr>
+  <td style="text-align: left;">Size</td>
+  <td style="text-align: left;">14 pt</td>
+  <td style="text-align: left;">–</td>
+  <td style="text-align: left;">–</td>
+  <td style="text-align: left;">–</td>
+  </tr>
+  <tr>
+  <td style="text-align: left;">Publisher</td>
+  <td style="text-align: left;"></td>
+  <td style="text-align: left;"></td>
+  <td style="text-align: left;"></td>
+  <td style="text-align: left;"></td>
+  </tr>
+  <tr>
+  <td style="text-align: left;">Typeface</td>
+  <td style="text-align: left;">serif</td>
+  <td style="text-align: left;">serif</td>
+  <td style="text-align: left;">serif</td>
+  <td style="text-align: left;">sans serif</td>
+  </tr>
+  <tr>
+  <td style="text-align: left;">Style</td>
+  <td style="text-align: left;">italics</td>
+  <td style="text-align: left;">italics</td>
+  <td style="text-align: left;">italics</td>
+  <td style="text-align: left;">upright, caps</td>
+  </tr>
+  <tr>
+  <td style="text-align: left;">Size</td>
+  <td style="text-align: left;">14 pt</td>
+  <td style="text-align: left;">14 pt</td>
+  <td style="text-align: left;">14 pt</td>
+  <td style="text-align: left;">14 pt</td>
   </tr>
   </tbody>
   </table>
   </div>
-  <h2 id="rq3-extending-the-benchmark">RQ3: Extending the benchmark</h2>
-  <p>"<em>How can we extend the benchmark to improve its quality and
-  fitness?</em>"</p>
-  <p>Table <a href="#subsec:comparision" data-reference-type="ref"
-  data-reference="subsec:comparision">8.2</a> shows the gaps (third
-  column) in the benchmark MVC pattern description and how the SoS model
-  of the MVC pattern presented in Section <a href="#sec:sos-mvc"
-  data-reference-type="ref" data-reference="sec:sos-mvc">7</a> addresses
-  these gaps (last column). Based on this, we conclude that augmenting
-  the pattern description with an SoS model and its description makes it
-  high-quality and fit for the needs of novice engineers. We will
-  validate this through expert study in the future.</p>
-  <h2 id="other-benefits-of-the-sos-model">Other benefits of the SoS
-  model</h2>
-  <p>An SoS model offers many details about the pattern itself, which
-  helps the teaching-learning process. Some of these are listed
-  below:</p>
-  <ol>
-  <li><p><strong>Easy to demonstrate completeness and
-  correctness</strong>: Completeness can be shown by mapping the use
-  cases (UC1 and UC2 in Section <a href="#sec:pattern-mvc"
-  data-reference-type="ref" data-reference="sec:pattern-mvc">3</a>) with
-  the traces specified in the Behavior (B) and correctness can be
-  demonstrated by showing that the trace simulates the user
-  requirement.</p></li>
-  <li><p><strong>Easy to identify constraints and limitations</strong>:
-  System definitions, traces, and specifications make it easy to
-  identify the model’s limitations and, hence, the pattern. For example,
-  <span class="math inline">\(MODELUPDATESPEC\)</span> assumes that all
-  change messages are results of modelupdate messages from the
-  Controller; this precludes the possibility that other Controller
-  systems work with the same model.</p></li>
-  <li><p><strong>Easy to identify changes required to fit a
-  need</strong>: Given that the elements, connections, and their
-  behavior are specified clearly, it is easy to identify changes that
-  are needed to fit a requirement. For example, if we want the pattern
-  to behave such that changes to the model are also notified to the
-  Controller, we can easily see that it is not supported.</p></li>
-  </ol>
-  <figure id="fig:mvcsosaugmented">
-  <img src="images/MVCSoSAugmented.png" />
-  <figcaption>MVC SoS with Controller receiving model updates (blue
-  lines show connections added to support this scenario)</figcaption>
+  <figure data-latex-placement="p">
+  <p><br />
+  </p>
   </figure>
-  <h1 id="sec:conclusion">Conclusion and future work</h1>
-  <p>Knowledge and understanding of architecture patterns can be vital
-  to making novice engineers effective when they try to comprehend large
-  software products. In this paper, we have proposed a way to model an
-  architecture pattern as a system and use this model to augment the
-  pattern documentation. Even though the approach can be used for many
-  architectural styles and patterns, we have focused on the MVC pattern
-  for our study in this paper. We reviewed different sources of pattern
-  documentation and identified "Pattern-oriented Software Architecture
-  (POSA)" <span class="citation"
-  data-cites="buschmannPatternOrientedSoftwareArchitecture1996">(Buschmann
-  et al. 1996a)</span> as the benchmark MVC pattern description.</p>
-  <p>We have defined what we mean by high-quality and fit for need in
-  the context of a pattern description and have created evaluation
-  criteria using the literature on pattern description. We evaluated the
-  benchmark MVC pattern description using the evaluation criteria and
-  concluded that it is not high-quality and fit for the needs of novice
-  engineers. We then extended the description using a System of Systems
-  (SoS) model of the pattern and showed that this augmented description
-  is high-quality and fit.</p>
-  <p>To build the System of Systems (SoS) models, we have used
-  transition systems vocabulary and defined an SoS model in terms of a
-  set of Systems, Connections, and Behavior, <span
-  class="math inline">\(SoS = (G, L, B)\)</span>. We have also shown
-  that such a model provides many other benefits.</p>
-  <p>We propose that such models be built for other architecture
-  patterns relevant to SaaS products so that we can make all these
-  architecture descriptions high quality and fit for novice engineers.
-  This will go a long way in making novice engineers effective in their
-  comprehension tasks.</p>
-  <p><em>Limitations and threats to validity</em> The study is primarily
-  done by the first author defining the evaluation criteria and applying
-  it to the available descriptions and the benchmark (POSA) description;
-  multiple evaluators have not been used. This evaluation could also
-  benefit from a user study where we get users to evaluate or use the
-  two descriptions and get feedback. Even though we looked for MVC
-  pattern descriptions, we found very few, which resulted in a small
-  list that we reviewed for identifying the benchmark, and we may have
-  missed some better descriptions.</p>
-  <p><em>Future work.</em> We plan to study the efficacy of the POSA and
-  the SoS model for novice engineers and industry experts using the
-  rubric created in this paper. We also plan to explore other relevant
-  architecture patterns for SaaS products and build similar models. Our
-  goal is to publish a model-augmented pattern catalog for SaaS
-  products. We expect such a catalog to be useful for novice engineers
-  and a good resource in the teaching-learning process of architecture
-  patterns.</p>
+  <p>in Tufte’s books give us our first glimpse of the structure of the
+  main matter. <em>The Visual Display of Quantitative Information</em>
+  is split into two parts, each containing some number of chapters. His
+  other three books only contain chapters—they’re not broken into
+  parts.</p>
+  <figure data-latex-placement="p">
+  <p><br />
+  </p>
+  </figure>
+  <h3 id="sec:typefaces1">Typefaces</h3>
+  <p>Tufte’s books primarily use two typefaces: Bembo and Gill Sans.
+  Bembo is used for the headings and body text, while Gill Sans is used
+  for the title page and opening epigraphs in <em>Beautiful
+  Evidence</em>.</p>
+  <p>Since neither Bembo nor Gill Sans are available in default LaTeX
+  installations, the Tufte-LaTeX document classes default to using
+  Palatino and Helvetica, respectively. In addition, the Bera Mono
+  typeface is used for <code>monospaced</code> type.</p>
+  <p>The following font sizes are defined by the Tufte-LaTeX
+  classes:</p>
+  <div class="center">
+  <div id="tab:font-sizes">
+  <table>
+  <caption>A list of LaTeX font sizes as defined by the Tufte-LaTeX
+  document classes.</caption>
+  <thead>
+  <tr>
+  <th style="text-align: left;">LaTeX size</th>
+  <th style="text-align: center;">Font size</th>
+  <th style="text-align: center;">Leading</th>
+  <th style="text-align: left;">Used for</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+  <td style="text-align: left;"><code>\tiny</code></td>
+  <td style="text-align: center;">5</td>
+  <td style="text-align: center;">6</td>
+  <td style="text-align: left;">sidenote numbers</td>
+  </tr>
+  <tr>
+  <td style="text-align: left;"><code>\scriptsize</code></td>
+  <td style="text-align: center;">7</td>
+  <td style="text-align: center;">8</td>
+  <td style="text-align: left;">–</td>
+  </tr>
+  <tr>
+  <td style="text-align: left;"><code>\footnotesize</code></td>
+  <td style="text-align: center;">8</td>
+  <td style="text-align: center;">10</td>
+  <td style="text-align: left;">sidenotes, captions</td>
+  </tr>
+  <tr>
+  <td style="text-align: left;"><code>\small</code></td>
+  <td style="text-align: center;">9</td>
+  <td style="text-align: center;">12</td>
+  <td style="text-align: left;">quote, quotation, and verse
+  environments</td>
+  </tr>
+  <tr>
+  <td style="text-align: left;"><code>\normalsize</code></td>
+  <td style="text-align: center;">10</td>
+  <td style="text-align: center;">14</td>
+  <td style="text-align: left;">body text</td>
+  </tr>
+  <tr>
+  <td style="text-align: left;"><code>\large</code></td>
+  <td style="text-align: center;">11</td>
+  <td style="text-align: center;">15</td>
+  <td style="text-align: left;"><span
+  class="smallcaps">b</span>-heads</td>
+  </tr>
+  <tr>
+  <td style="text-align: left;"><code>\Large</code></td>
+  <td style="text-align: center;">12</td>
+  <td style="text-align: center;">16</td>
+  <td style="text-align: left;"><span class="smallcaps">a</span>-heads,
+  <span class="smallcaps">toc</span> entries, author, date</td>
+  </tr>
+  <tr>
+  <td style="text-align: left;"><code>\LARGE</code></td>
+  <td style="text-align: center;">14</td>
+  <td style="text-align: center;">18</td>
+  <td style="text-align: left;">handout title</td>
+  </tr>
+  <tr>
+  <td style="text-align: left;"><code>\huge</code></td>
+  <td style="text-align: center;">20</td>
+  <td style="text-align: center;">30</td>
+  <td style="text-align: left;">chapter heads</td>
+  </tr>
+  <tr>
+  <td style="text-align: left;"><code>\Huge</code></td>
+  <td style="text-align: center;">24</td>
+  <td style="text-align: center;">36</td>
+  <td style="text-align: left;">part titles</td>
+  </tr>
+  </tbody>
+  </table>
+  </div>
+  </div>
+  <h3 id="sec:headings1">Headings</h3>
+  <p>Tufte’s books include the following heading levels: parts,
+  chapters, sections, subsections, and paragraphs. Not defined by
+  default are: sub-subsections and subparagraphs.</p>
+  <div class="center">
+  <div id="tab:heading-styles">
+  <table>
+  <caption>Heading styles used in <em>Beautiful Evidence</em>.</caption>
+  <thead>
+  <tr>
+  <th style="text-align: left;">Heading</th>
+  <th style="text-align: center;">Style</th>
+  <th style="text-align: right;">Size</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+  <td style="text-align: left;">Part</td>
+  <td style="text-align: center;">roman</td>
+  <td style="text-align: right;">24/36<span
+  class="math inline">\(\times\)</span>pc</td>
+  </tr>
+  <tr>
+  <td style="text-align: left;">Chapter</td>
+  <td style="text-align: center;">italic</td>
+  <td style="text-align: right;">20/30<span
+  class="math inline">\(\times\)</span>pc</td>
+  </tr>
+  <tr>
+  <td style="text-align: left;">Section</td>
+  <td style="text-align: center;">italic</td>
+  <td style="text-align: right;">12/16<span
+  class="math inline">\(\times\)</span>pc</td>
+  </tr>
+  <tr>
+  <td style="text-align: left;">Subsection</td>
+  <td style="text-align: center;">italic</td>
+  <td style="text-align: right;">11/15<span
+  class="math inline">\(\times\)</span>pc</td>
+  </tr>
+  <tr>
+  <td style="text-align: left;">Paragraph</td>
+  <td style="text-align: center;">italic</td>
+  <td style="text-align: right;">10/14</td>
+  </tr>
+  </tbody>
+  </table>
+  </div>
+  </div>
+  <h6 id="paragraph">Paragraph</h6>
+  <p>Paragraph headings (as shown here) are introduced by italicized
+  text and separated from the main paragraph by a bit of space.</p>
+  <h3 id="environments">Environments</h3>
+  <p>The following characteristics define the various environments:</p>
+  <div class="center">
+  <div id="tab:environment-styles">
+  <table>
+  <caption>Environment styles used in <em>Beautiful
+  Evidence</em>.</caption>
+  <thead>
+  <tr>
+  <th style="text-align: left;">Environment</th>
+  <th style="text-align: center;">Font size</th>
+  <th style="text-align: left;">Notes</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+  <td style="text-align: left;">Body text</td>
+  <td style="text-align: center;">10/14<span
+  class="math inline">\(\times\)</span>pc</td>
+  <td style="text-align: left;"></td>
+  </tr>
+  <tr>
+  <td style="text-align: left;">Block quote</td>
+  <td style="text-align: center;">9/12<span
+  class="math inline">\(\times\)</span>pc</td>
+  <td style="text-align: left;">Block indent (left and right) by pc</td>
+  </tr>
+  <tr>
+  <td style="text-align: left;">Sidenotes</td>
+  <td style="text-align: center;">8/10<span
+  class="math inline">\(\times\)</span>pc</td>
+  <td style="text-align: left;">Sidenote number is set inline, followed
+  by word space</td>
+  </tr>
+  <tr>
+  <td style="text-align: left;">Captions</td>
+  <td style="text-align: center;">8/10<span
+  class="math inline">\(\times\)</span>pc</td>
+  <td style="text-align: left;"></td>
+  </tr>
+  </tbody>
+  </table>
+  </div>
+  </div>
+  <h2 id="ch:tufte-book">On the Use of the <code>tufte-book</code>
+  Document Class</h2>
+  <p>The Tufte-LaTeX document classes define a style similar to the
+  style Edward Tufte uses in his books and handouts. Tufte’s style is
+  known for its extensive use of sidenotes, tight integration of
+  graphics with text, and well-set typography. This document aims to be
+  at once a demonstration of the features of the Tufte-LaTeX document
+  classes and a style guide to their use.</p>
+  <h3 id="sec:page-layout">Page Layout</h3>
+  <h4 id="sec:headings">Headings</h4>
+  <p>This style provides <span class="smallcaps">a</span>- and <span
+  class="smallcaps">b</span>-heads (that is, <code>\section</code> and
+  <code>\subsection</code>), demonstrated above.</p>
+  <p>If you need more than two levels of section headings, you’ll have
+  to define them yourself at the moment; there are no pre-defined styles
+  for anything below a <code>\subsection</code>. As Bringhurst points
+  out in <em>The Elements of Typographic Style</em>,<span
+  class="citation" data-cites="Bringhurst2005">(Bringhurst 2005)</span>
+  you should “use as many levels of headings as you need: no more, and
+  no fewer.”</p>
+  <p>The Tufte-LaTeX classes will emit an error if you try to use<br />
+  <code>\subsubsection</code> and smaller headings.</p>
+  <p>,<span class="citation" data-cites="Tufte2006">(Tufte 2006)</span>
+  Tufte starts each section with a bit of vertical space, a non-indented
+  paragraph, and sets the first few words of the sentence in <span
+  class="smallcaps">small caps</span>. To accomplish this using this
+  style, use the <span
+  style="color: Maroon"><code>newthought</code></span><span
+  id="cmd:newthought" data-label="cmd:newthought"></span> <span> </span>
+  <span> </span> command:</p>
+  <blockquote>
+  <p><code>newthought</code> <span> </span> <span> </span> {In his later
+  books}, Tufte starts…</p>
+  </blockquote>
+  <h3 id="sec:sidenotes">Sidenotes</h3>
+  <p>One of the most prominent and distinctive features of this style is
+  the extensive use of sidenotes. There is a wide margin to provide
+  ample room for sidenotes and small figures. Any <code>footnote</code>
+  <span> </span> <span> </span> s will automatically be converted to
+  sidenotes.<a href="#fn1" class="footnote-ref" id="fnref1"
+  role="doc-noteref"><sup>1</sup></a> If you’d like to place ancillary
+  information in the margin without the sidenote mark (the superscript
+  number), you can use the <code>marginnote</code> <span> </span> <span>
+  </span> command.</p>
+  <p>The specification of the <span
+  style="color: Maroon"><code>sidenote</code></span><span
+  id="cmd:sidenote" data-label="cmd:sidenote"></span> <span> </span>
+  <span> </span> command is:</p>
+  <blockquote>
+  <p><code>sidenote</code> <span> </span> <span> </span> [<span
+  class="math inline">\(\langle\)</span><span
+  class="roman"><em>number</em></span><span
+  class="math inline">\(\rangle\)</span>][<span
+  class="math inline">\(\langle\)</span><span
+  class="roman"><em>offset</em></span><span
+  class="math inline">\(\rangle\)</span>]{<span
+  class="roman"><em>Sidenote text.</em></span>}</p>
+  </blockquote>
+  <p>Both the <span class="math inline">\(\langle\)</span><span
+  class="roman"><em>number</em></span><span
+  class="math inline">\(\rangle\)</span> and <span
+  class="math inline">\(\langle\)</span><span
+  class="roman"><em>offset</em></span><span
+  class="math inline">\(\rangle\)</span> arguments are optional. If you
+  provide a <span class="math inline">\(\langle\)</span><span
+  class="roman"><em>number</em></span><span
+  class="math inline">\(\rangle\)</span> argument, then that number will
+  be used as the sidenote number. It will change of the number of the
+  current sidenote only and will not affect the numbering sequence of
+  subsequent sidenotes.</p>
+  <p>Sometimes a sidenote may run over the top of other text or graphics
+  in the margin space. If this happens, you can adjust the vertical
+  position of the sidenote by providing a dimension in the <span
+  class="math inline">\(\langle\)</span><span
+  class="roman"><em>offset</em></span><span
+  class="math inline">\(\rangle\)</span> argument. Some examples of
+  valid dimensions are:</p>
+  <blockquote>
+  <p><code>\baselineskip</code></p>
+  </blockquote>
+  <p>If the dimension is positive it will push the sidenote down the
+  page; if the dimension is negative, it will move the sidenote up the
+  page.</p>
+  <p>While both the <span class="math inline">\(\langle\)</span><span
+  class="roman"><em>number</em></span><span
+  class="math inline">\(\rangle\)</span> and <span
+  class="math inline">\(\langle\)</span><span
+  class="roman"><em>offset</em></span><span
+  class="math inline">\(\rangle\)</span> arguments are optional, they
+  must be provided in order. To adjust the vertical position of the
+  sidenote while leaving the sidenote number alone, use the following
+  syntax:</p>
+  <blockquote>
+  <p><code>sidenote</code> <span> </span> <span> </span> [][<span
+  class="math inline">\(\langle\)</span><span
+  class="roman"><em>offset</em></span><span
+  class="math inline">\(\rangle\)</span>]{<span
+  class="roman"><em>Sidenote text.</em></span>}</p>
+  </blockquote>
+  <p>The empty brackets tell the <code>\sidenote</code> command to use
+  the default sidenote number.</p>
+  <p>If you <em>only</em> want to change the sidenote number, however,
+  you may completely omit the <span
+  class="math inline">\(\langle\)</span><span
+  class="roman"><em>offset</em></span><span
+  class="math inline">\(\rangle\)</span> argument:</p>
+  <blockquote>
+  <p><code>sidenote</code> <span> </span> <span> </span> [<span
+  class="math inline">\(\langle\)</span><span
+  class="roman"><em>number</em></span><span
+  class="math inline">\(\rangle\)</span>]{<span
+  class="roman"><em>Sidenote text.</em></span>}</p>
+  </blockquote>
+  <p>The <span style="color: Maroon"><code>marginnote</code></span><span
+  id="cmd:marginnote" data-label="cmd:marginnote"></span> <span> </span>
+  <span> </span> command has a similar <span
+  class="roman"><em>offset</em></span> argument:</p>
+  <blockquote>
+  <p><code>marginnote</code> <span> </span> <span> </span> [<span
+  class="math inline">\(\langle\)</span><span
+  class="roman"><em>offset</em></span><span
+  class="math inline">\(\rangle\)</span>]{<span class="roman"><em>Margin
+  note text.</em></span>}</p>
+  </blockquote>
+  <h3 id="references">References</h3>
+  <p>References are placed alongside their citations as sidenotes, as
+  well. This can be accomplished using the normal <span
+  style="color: Maroon"><code>cite</code></span><span id="cmd:cite"
+  data-label="cmd:cite"></span> <span> </span> <span> </span></p>
+  <p>command.</p>
+  <p>The complete list of references may also be printed automatically
+  by using the <span
+  style="color: Maroon"><code>bibliography</code></span><span
+  id="cmd:bibliography" data-label="cmd:bibliography"></span> <span>
+  </span> <span> </span> command. (See the end of this document for an
+  example.) If you do not want to print a bibliographyn at the end of
+  your document, use the <span
+  style="color: Maroon"><code>nobibliography</code></span><span
+  id="cmd:nobibliography" data-label="cmd:nobibliography"></span> <span>
+  </span> <span> </span> command in its place.</p>
+  <p>To enter multiple citations at one location,<span class="citation"
+  data-cites="Tufte2006 Tufte1990">(Tufte 2006; 1990, –3)</span> you can
+  provide a list of keys separated by commas and the same optional
+  vertical offset argument: <code>\cite{Tufte2006,Tufte1990}</code>.</p>
+  <blockquote>
+  <p><code>cite</code> <span> </span> <span> </span> [<span
+  class="math inline">\(\langle\)</span><span
+  class="roman"><em>offset</em></span><span
+  class="math inline">\(\rangle\)</span>]{<span
+  class="roman"><em>bibkey1,bibkey2,…</em></span>}</p>
+  </blockquote>
+  <h3 id="sec:figures-and-tables">Figures and Tables</h3>
+  <p>Images and graphics play an integral role in Tufte’s work. In
+  addition to the standard <span
+  style="color: Maroon"><code>figure</code></span><span id="env:figure"
+  data-label="env:figure"></span> and <span
+  style="color: Maroon"><code>tabular</code></span><span
+  id="env:tabular" data-label="env:tabular"></span> environments, this
+  style provides special figure and table environments for full-width
+  floats.</p>
+  <p>Full page–width figures and tables may be placed in <span
+  style="color: Maroon"><code>figure*</code></span><span
+  id="env:figure*" data-label="env:figure*"></span> or <span
+  style="color: Maroon"><code>table*</code></span><span id="env:table*"
+  data-label="env:table*"></span> environments. To place figures or
+  tables in the margin, use the <span
+  style="color: Maroon"><code>marginfigure</code></span><span
+  id="env:marginfigure" data-label="env:marginfigure"></span> or <span
+  style="color: Maroon"><code>margintable</code></span><span
+  id="env:margintable" data-label="env:margintable"></span> environments
+  as follows (see figure <a href="#fig:marginfig"
+  data-reference-type="ref"
+  data-reference="fig:marginfig">[fig:marginfig]</a>):</p>
+  <div class="marginfigure">
+  <p><embed src="helix.pdf" /></p>
+  </div>
+  <blockquote>
+  <p>\begin{marginfigure}<br />
+  \includegraphics{helix}<br />
+  \caption{This is a margin figure.}<br />
+  \label{fig:marginfig}<br />
+  \end{marginfigure}<br />
+  </p>
+  </blockquote>
+  <p>The <code>marginfigure</code> and <code>margintable</code>
+  environments accept an optional parameter <span
+  class="math inline">\(\langle\)</span><span
+  class="roman"><em>offset</em></span><span
+  class="math inline">\(\rangle\)</span> that adjusts the vertical
+  position of the figure or table. See the “” section above for
+  examples. The specifications are:</p>
+  <blockquote>
+  <p>\<span>begin{marginfigure}[<span
+  class="math inline">\(\langle\)</span><span
+  class="roman"><em>offset</em></span><span
+  class="math inline">\(\rangle\)</span>]</span><br />
+  …<br />
+  \<span>end{marginfigure}</span><br />
+  <br />
+  \<span>begin{margintable}[<span
+  class="math inline">\(\langle\)</span><span
+  class="roman"><em>offset</em></span><span
+  class="math inline">\(\rangle\)</span>]</span><br />
+  …<br />
+  \<span>end{margintable}</span><br />
+  </p>
+  </blockquote>
+  <p>Figure <a href="#fig:fullfig" data-reference-type="ref"
+  data-reference="fig:fullfig">2.1</a> is an example of the
+  <code>figure*</code> environment and figure <a href="#fig:textfig"
+  data-reference-type="ref" data-reference="fig:textfig">2.2</a> is an
+  example of the normal <code>figure</code> environment.</p>
+  <figure id="fig:fullfig" data-latex-placement="h">
+  <embed src="sine.pdf" />
+  <figcaption>This graph shows <span class="math inline">\(y = \sin
+  x\)</span> from about <span class="math inline">\(x = [-10,
+  10]\)</span>. <em>Notice that this figure takes up the full page
+  width.</em></figcaption>
+  </figure>
+  <figure id="fig:textfig">
+  <embed src="hilbertcurves.pdf" />
+  <p>6pt]<span>Hilbert curves of various degrees <span
+  class="math inline">\(n\)</span>. <em>Notice that this figure only
+  takes up the main textblock width.</em></span> <span id="fig:textfig"
+  data-label="fig:textfig"></span></p>
+  <figcaption>[</figcaption>
+  </figure>
+  <p>As with sidenotes and marginnotes, a caption may sometimes require
+  vertical adjustment. The <span
+  style="color: Maroon"><code>caption</code></span><span
+  id="cmd:caption" data-label="cmd:caption"></span> <span> </span>
+  <span> </span> command now takes a second optional argument that
+  enables you to do this by providing a dimension <span
+  class="math inline">\(\langle\)</span><span
+  class="roman"><em>offset</em></span><span
+  class="math inline">\(\rangle\)</span>. You may specify the caption in
+  any one of the following forms:</p>
+  <blockquote>
+  <p><code>caption</code> <span> </span> <span> </span> {<span
+  class="roman"><em>long caption</em></span>}<br />
+  <code>caption</code> <span> </span> <span> </span> [<span
+  class="roman"><em>short caption</em></span>]{<span
+  class="roman"><em>long caption</em></span>}<br />
+  <code>caption</code> <span> </span> <span> </span> [][<span
+  class="math inline">\(\langle\)</span><span
+  class="roman"><em>offset</em></span><span
+  class="math inline">\(\rangle\)</span>]{<span class="roman"><em>long
+  caption</em></span>}<br />
+  <code>caption</code> <span> </span> <span> </span> [<span
+  class="roman"><em>short caption</em></span>][<span
+  class="math inline">\(\langle\)</span><span
+  class="roman"><em>offset</em></span><span
+  class="math inline">\(\rangle\)</span>] {<span class="roman"><em>long
+  caption</em></span>}</p>
+  </blockquote>
+  <p>A positive <span class="math inline">\(\langle\)</span><span
+  class="roman"><em>offset</em></span><span
+  class="math inline">\(\rangle\)</span> will push the caption down the
+  page. The short caption, if provided, is what appears in the list of
+  figures/tables, otherwise the “long” caption appears there. Note that
+  although the arguments <span
+  class="math inline">\(\langle\)</span><span class="roman"><em>short
+  caption</em></span><span class="math inline">\(\rangle\)</span> and
+  <span class="math inline">\(\langle\)</span><span
+  class="roman"><em>offset</em></span><span
+  class="math inline">\(\rangle\)</span> are both optional, they must be
+  provided in order. Thus, to specify an <span
+  class="math inline">\(\langle\)</span><span
+  class="roman"><em>offset</em></span><span
+  class="math inline">\(\rangle\)</span> without specifying a <span
+  class="math inline">\(\langle\)</span><span class="roman"><em>short
+  caption</em></span><span class="math inline">\(\rangle\)</span>, you
+  must include the first set of empty brackets <code>[]</code>, which
+  tell <code>caption</code> <span> </span> <span> </span> to use the
+  default “long” caption. As an example, the caption to figure <a
+  href="#fig:textfig" data-reference-type="ref"
+  data-reference="fig:textfig">2.2</a> above was given in the form</p>
+  <blockquote>
+  <p><code>caption</code> <span> </span> <span> </span> [Hilbert
+  curves...][6pt]{Hilbert curves...}</p>
+  </blockquote>
+  <p>Table <a href="#tab:normaltab" data-reference-type="ref"
+  data-reference="tab:normaltab">2.1</a> shows table created with the
+  <code>booktabs</code> package. Notice the lack of vertical rules—they
+  serve only to clutter the table’s data.</p>
+  <div id="tab:normaltab">
+  <table>
+  <caption>Here are the dimensions of the various margins used in the
+  Tufte-handout class.</caption>
+  <thead>
+  <tr>
+  <th style="text-align: left;">Margin</th>
+  <th style="text-align: left;">Length</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+  <td style="text-align: left;">Paper width</td>
+  <td style="text-align: left;">[ 8  ] inches</td>
+  </tr>
+  <tr>
+  <td style="text-align: left;">Paper height</td>
+  <td style="text-align: left;">inches</td>
+  </tr>
+  <tr>
+  <td style="text-align: left;">Textblock width</td>
+  <td style="text-align: left;">[ 6  ] inches</td>
+  </tr>
+  <tr>
+  <td style="text-align: left;">Textblock/sidenote gutter</td>
+  <td style="text-align: left;">[  ] inches</td>
+  </tr>
+  <tr>
+  <td style="text-align: left;">Sidenote width</td>
+  <td style="text-align: left;">inches</td>
+  </tr>
+  </tbody>
+  </table>
+  </div>
+  <p>LaTeX will generate an error message:<span id="err:too-many-floats"
+  data-label="err:too-many-floats"></span></p>
+  <blockquote>
+  <p>Error: Too many unprocessed floats</p>
+  </blockquote>
+  <p>LaTeX tries to place floats in the best position on the page. Until
+  it’s finished composing the page, however, it won’t know where those
+  positions are. If you have a lot of floats on a page (including
+  sidenotes, margin notes, figures, tables, etc.), LaTeX may run out of
+  “slots” to keep track of them and will generate the above error.</p>
+  <p>LaTeX initially allocates 18 slots for storing floats. To work
+  around this limitation, the Tufte-LaTeX document classes provide a
+  <span style="color: Maroon"><code>morefloats</code></span><span
+  id="cmd:morefloats" data-label="cmd:morefloats"></span> <span> </span>
+  <span> </span> command that will reserve more slots.</p>
+  <p>The first time <code>morefloats</code> <span> </span> <span>
+  </span> is called, it allocates an additional 34 slots. The second
+  time <code>morefloats</code> <span> </span> <span> </span> is called,
+  it allocates another 26 slots.</p>
+  <p>The <code>morefloats</code> <span> </span> <span> </span> command
+  may only be used two times. Calling it a third time will generate an
+  error message. (This is because we can’t safely allocate many more
+  floats or LaTeX will run out of memory.)</p>
+  <p>If, after using the <code>morefloats</code> <span> </span> <span>
+  </span> command twice, you continue to get the
+  <code>Too many unprocessed floats</code> error, there are a couple
+  things you can do.</p>
+  <p>The <span
+  style="color: Maroon"><code>FloatBarrier</code></span><span
+  id="cmd:FloatBarrier" data-label="cmd:FloatBarrier"></span> <span>
+  </span> <span> </span> command will immediately process all the floats
+  before typesetting more material. Since <code>FloatBarrier</code>
+  <span> </span> <span> </span> will start a new paragraph, you should
+  place this command at the beginning or end of a paragraph.</p>
+  <p>The <span style="color: Maroon"><code>clearpage</code></span><span
+  id="cmd:clearpage" data-label="cmd:clearpage"></span> <span> </span>
+  <span> </span> command will also process the floats before continuing,
+  but instead of starting a new paragraph, it will start a new page.</p>
+  <p>You can also try moving your floats around a bit: move a figure or
+  table to the next page or reduce the number of sidenotes. (Each
+  sidenote actually uses <em>two</em> slots.)</p>
+  <p>After the floats have placed, LaTeX will mark those slots as unused
+  so they are available for the next page to be composed.</p>
+  <h3 id="captions">Captions</h3>
+  <p>You may notice that the captions are sometimes misaligned. Due to
+  the way LaTeX’s float mechanism works, we can’t know for sure where it
+  decided to put a float. Therefore, the Tufte-LaTeX document classes
+  provide commands to override the caption position.</p>
+  <h6 id="vertical-alignment">Vertical alignment</h6>
+  <p>To override the vertical alignment, use the
+  <code>setfloatalignment</code> <span> </span> <span> </span> command
+  inside the float environment. For example:</p>
+  <div class="fullwidth">
+  <blockquote>
+  <p>\begin{figure}[btp]<br />
+  \includegraphics{sinewave}<br />
+  \caption{This is an example of a sine wave.}<br />
+  \label{fig:sinewave}<br />
+  <span style="color: Maroon">\setfloatalignment{b}% forces caption to
+  be bottom-aligned</span><br />
+  \end{figure}</p>
+  </blockquote>
+  </div>
+  <p>The syntax of the <span
+  style="color: Maroon"><code>setfloatalignment</code></span><span
+  id="cmd:setfloatalignment" data-label="cmd:setfloatalignment"></span>
+  <span> </span> <span> </span> command is:</p>
+  <blockquote>
+  <p><code>setfloatalignment</code> <span> </span> <span> </span> {<span
+  class="math inline">\(\langle\)</span><span
+  class="roman"><em>pos</em></span><span
+  class="math inline">\(\rangle\)</span>}</p>
+  </blockquote>
+  <p>where <span class="math inline">\(\langle\)</span><span
+  class="roman"><em>pos</em></span><span
+  class="math inline">\(\rangle\)</span> can be either <code>b</code>
+  for bottom-aligned captions, or <code>t</code> for top-aligned
+  captions.</p>
+  <h6 id="par:overriding-horizontal">Horizontal alignment</h6>
+  <p>To override the horizontal alignment, use either the
+  <code>forceversofloat</code> <span> </span> <span> </span></p>
+  <p>or the <code>forcerectofloat</code> <span> </span> <span> </span>
+  command inside of the float environment. For example:</p>
+  <div class="fullwidth">
+  <blockquote>
+  <p>\begin{figure}[btp]<br />
+  \includegraphics{sinewave}<br />
+  \caption{This is an example of a sine wave.}<br />
+  \label{fig:sinewave}<br />
+  <span style="color: Maroon">\forceversofloat% forces caption to be set
+  to the left of the float</span><br />
+  \end{figure}</p>
+  </blockquote>
+  </div>
+  <p>The <span
+  style="color: Maroon"><code>forceversofloat</code></span><span
+  id="cmd:forceversofloat" data-label="cmd:forceversofloat"></span>
+  <span> </span> <span> </span> command causes the algorithm to assume
+  the float has been placed on a verso page—that is, a page on the left
+  side of a two-page spread. Conversely, the <span
+  style="color: Maroon"><code>forcerectofloat</code></span><span
+  id="cmd:forcerectofloat" data-label="cmd:forcerectofloat"></span>
+  <span> </span> <span> </span> command causes the algorithm to assume
+  the float has been placed on a recto page—that is, a page on the right
+  side of a two-page spread.</p>
+  <h3 id="full-width-text-blocks">Full-width text blocks</h3>
+  <p>In addition to the new float types, there is a <span
+  style="color: Maroon"><code>fullwidth</code></span><span
+  id="env:fullwidth" data-label="env:fullwidth"></span> environment that
+  stretches across the main text block and the sidenotes area.</p>
+  <pre><code>\begin{fullwidth}
+Lorem ipsum dolor sit amet...
+\end{fullwidth}</code></pre>
+  <div class="fullwidth">
+  <p><em></em></p>
+  </div>
+  <h3 id="sec:typography">Typography</h3>
+  <h4 id="sec:typefaces">Typefaces</h4>
+  <p>If the Palatino, <span class="sans-serif">Helvetica</span>, and
+  <code>Bera Mono</code> typefaces are installed, this style will use
+  them automatically. Otherwise, we’ll fall back on the Computer Modern
+  typefaces.</p>
+  <h4 id="sec:letterspacing">Letterspacing</h4>
+  <p>This document class includes two new commands and some improvements
+  on existing commands for letterspacing.</p>
+  <p>When setting strings of or , the letter­spacing—that is, the spacing
+  between the letters—should be increased slightly.<span
+  class="citation" data-cites="Bringhurst2005">(Bringhurst 2005,
+  32)</span> The <span
+  style="color: Maroon"><code>allcaps</code></span><span
+  id="cmd:allcaps" data-label="cmd:allcaps"></span> <span> </span>
+  <span> </span> command has proper letterspacing for strings of , and
+  the <span style="color: Maroon"><code>smallcaps</code></span><span
+  id="cmd:smallcaps" data-label="cmd:smallcaps"></span> <span> </span>
+  <span> </span> command has letterspacing for . These commands will
+  also automatically convert the case of the text to upper- or
+  lowercase, respectively.</p>
+  <p>The <span style="color: Maroon"><code>textsc</code></span><span
+  id="cmd:textsc" data-label="cmd:textsc"></span> <span> </span> <span>
+  </span> command has also been redefined to include letterspacing. The
+  case of the <code>textsc</code> <span> </span> <span> </span> argument
+  is left as is, however. This allows one to use both uppercase and
+  lowercase letters: <span class="smallcaps">The Initial Letters Of The
+  Words In This Sentence Are Capitalized.</span></p>
+  <h3 id="sec:options">Document Class Options</h3>
+  <p>The <code>tufte-book</code> class is based on the
+  LaTeX <code>book</code> document class. Therefore, you can pass any of
+  the typical book options. There are a few options that are specific to
+  the <code>tufte-book</code> document class, however.</p>
+  <p>The <span style="color: Maroon"><code>a4paper</code></span><span
+  id="clsopt:a4paper" data-label="clsopt:a4paper"></span> option will
+  set the paper size to instead of the default letter size.</p>
+  <p>The <span
+  style="color: Maroon"><code>sfsidenotes</code></span><span
+  id="clsopt:sfsidenotes" data-label="clsopt:sfsidenotes"></span> option
+  will set the sidenotes and title block in a <span
+  class="sans-serif">sans serif</span> typeface instead of the default
+  roman.</p>
+  <p>The <span style="color: Maroon"><code>twoside</code></span><span
+  id="clsopt:twoside" data-label="clsopt:twoside"></span> option will
+  modify the running heads so that the page number is printed on the
+  outside edge (as opposed to always printing the page number on the
+  right-side edge in <span
+  style="color: Maroon"><code>oneside</code></span><span
+  id="clsopt:oneside" data-label="clsopt:oneside"></span> mode).</p>
+  <p>The <span style="color: Maroon"><code>symmetric</code></span><span
+  id="clsopt:symmetric" data-label="clsopt:symmetric"></span> option
+  typesets the sidenotes on the outside edge of the page. This is how
+  books are traditionally printed, but is contrary to Tufte’s book
+  design which sets the sidenotes on the right side of the page. This
+  option implicitly sets the <code>twoside</code> option.</p>
+  <p>The <span style="color: Maroon"><code>justified</code></span><span
+  id="clsopt:justified" data-label="clsopt:justified"></span> option
+  sets all the text fully justified (flush left and right). The default
+  is to set the text ragged right. The body text of Tufte’s books are
+  set ragged right. This prevents needless hyphenation and makes it
+  easier to read the text in the slightly narrower column.</p>
+  <p>The <span style="color: Maroon"><code>bidi</code></span><span
+  id="clsopt:bidi" data-label="clsopt:bidi"></span> option loads the
+  <code>bidi</code> package which is used with XLaTeX to typeset
+  bi-directional text. Since the <code>bidi</code> package needs to be
+  loaded before the sidenotes and cite commands are defined, it can’t be
+  loaded in the document preamble.</p>
+  <p>The <span style="color: Maroon"><code>debug</code></span><span
+  id="clsopt:debug" data-label="clsopt:debug"></span> option causes the
+  Tufte-LaTeX classes to output debug information to the log file which
+  is useful in troubleshooting bugs. It will also cause the graphics to
+  be replaced by outlines.</p>
+  <p>The <span style="color: Maroon"><code>nofonts</code></span><span
+  id="clsopt:nofonts" data-label="clsopt:nofonts"></span> option
+  prevents the Tufte-LaTeX classes from automatically loading the
+  Palatino and Helvetica typefaces. You should use this option if you
+  wish to load your own fonts. If you’re using XLaTeX, this option is
+  implied (<em>i.e.</em>, the Palatino and Helvetica fonts aren’t loaded
+  if you use XLaTeX).</p>
+  <p>The <span style="color: Maroon"><code>nols</code></span><span
+  id="clsopt:nols" data-label="clsopt:nols"></span> option inhibits the
+  letterspacing code. The Tufte-LaTeX classes try to load the
+  appropriate letterspacing package (either pdfTeX’s
+  <code>letterspace</code> package or the <code>soul</code> package). If
+  you’re using XLaTeX with <code>fontenc</code>, however, you should
+  configure your own letterspacing.</p>
+  <p>The <span
+  style="color: Maroon"><code>notitlepage</code></span><span
+  id="clsopt:notitlepage" data-label="clsopt:notitlepage"></span> option
+  causes <code>maketitle</code> <span> </span> <span> </span> to
+  generate a title block instead of a title page. The <code>book</code>
+  class defaults to a title page and the <code>handout</code> class
+  defaults to the title block. There is an analogous <span
+  style="color: Maroon"><code>titlepage</code></span><span
+  id="clsopt:titlepage" data-label="clsopt:titlepage"></span> option
+  that forces <code>maketitle</code> <span> </span> <span> </span> to
+  generate a full title page instead of the title block.</p>
+  <p>The <span style="color: Maroon"><code>notoc</code></span><span
+  id="clsopt:notoc" data-label="clsopt:notoc"></span> option suppresses
+  Tufte-LaTeX’s custom table of contents (<span
+  class="smallcaps">toc</span>) design. The current <span
+  class="smallcaps">toc</span> design only shows unnumbered chapter
+  titles; it doesn’t show sections or subsections. The
+  <code>notoc</code> option will revert to LaTeX’s <span
+  class="smallcaps">toc</span> design.</p>
+  <p>The <span style="color: Maroon"><code>nohyper</code></span><span
+  id="clsopt:nohyper" data-label="clsopt:nohyper"></span> option
+  prevents the <code>hyperref</code> package from being loaded. The
+  default is to load the <code>hyperref</code> package and use the
+  <code>title</code> <span> </span> <span> </span> and
+  <code>author</code> <span> </span> <span> </span> contents as metadata
+  for the generated <span class="smallcaps">pdf</span>.</p>
+  <h2 id="ch:customizing">Customizing Tufte-LaTeX</h2>
+  <p>The Tufte-LaTeX document classes are designed to closely emulate
+  Tufte’s book design by default. However, each document is different
+  and you may encounter situations where the default settings are
+  insufficient. This chapter explores many of the ways you can adjust
+  the Tufte-LaTeX document classes to better fit your needs.</p>
+  <h3 id="sec:filehooks">File Hooks</h3>
+  <p>If you create many documents using the Tufte-LaTeX classes, it’s
+  easier to store your customizations in a separate file instead of
+  copying them into the preamble of each document. The Tufte-LaTeX
+  classes provide three file hooks: <code>tufte-common-local.tex</code>,
+  <code>tufte-book-local.tex</code>, and
+  <code>tufte-handout-local.tex</code>.</p>
+  <dl>
+  <dt><code>tufte-common-local.tex</code></dt>
+  <dd>
+  <p>If this file exists, it will be loaded by all of the Tufte-LaTeX
+  document classes just prior to any document-class-specific code. If
+  your customizations or code should be included in both the book and
+  handout classes, use this file hook.</p>
+  </dd>
+  <dt><code>tufte-book-local.tex</code></dt>
+  <dd>
+  <p>If this file exists, it will be loaded after all of the common and
+  book-specific code has been read. If your customizations apply only to
+  the book class, use this file hook.</p>
+  </dd>
+  <dt><code>tufte-common-handout.tex</code></dt>
+  <dd>
+  <p>If this file exists, it will be loaded after all of the common and
+  handout-specific code has been read. If your customizations apply only
+  to the handout class, use this file hook.</p>
+  </dd>
+  </dl>
+  <h3 id="sec:numbered-sections">Numbered Section Headings</h3>
+  <p>While Tufte dispenses with numbered headings in his books, if you
+  require them, they can be anabled by changing the value of the
+  <code>secnumdepth</code> counter. From the table below, select the
+  heading level at which numbering should stop and set the
+  <code>secnumdepth</code> counter to that value. For example, if you
+  want parts and chapters numbered, but don’t want numbering for
+  sections or subsections, use the command:</p>
+  <blockquote>
+  <p><code>setcounter</code> <span> </span> <span> </span>
+  {secnumdepth}{0}</p>
+  </blockquote>
+  <p>The default <code>secnumdepth</code> for the Tufte-LaTeX document
+  classes is <span class="math inline">\(-1\)</span>.</p>
+  <div class="center">
+  <table>
+  <caption>Heading levels used with the <code>secnumdepth</code>
+  counter.</caption>
+  <thead>
+  <tr>
+  <th style="text-align: left;">Heading level</th>
+  <th style="text-align: right;">Value</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+  <td style="text-align: left;">Part (in <code>tufte-book</code>)</td>
+  <td style="text-align: right;"><span
+  class="math inline">\(-1\)</span></td>
+  </tr>
+  <tr>
+  <td style="text-align: left;">Part (in
+  <code>tufte-handout</code>)</td>
+  <td style="text-align: right;"><span
+  class="math inline">\(0\)</span></td>
+  </tr>
+  <tr>
+  <td style="text-align: left;">Chapter (only in
+  <code>tufte-book</code>)</td>
+  <td style="text-align: right;"><span
+  class="math inline">\(0\)</span></td>
+  </tr>
+  <tr>
+  <td style="text-align: left;">Section</td>
+  <td style="text-align: right;"><span
+  class="math inline">\(1\)</span></td>
+  </tr>
+  <tr>
+  <td style="text-align: left;">Subsection</td>
+  <td style="text-align: right;"><span
+  class="math inline">\(2\)</span></td>
+  </tr>
+  <tr>
+  <td style="text-align: left;">Subsubsection</td>
+  <td style="text-align: right;"><span
+  class="math inline">\(3\)</span></td>
+  </tr>
+  <tr>
+  <td style="text-align: left;">Paragraph</td>
+  <td style="text-align: right;"><span
+  class="math inline">\(4\)</span></td>
+  </tr>
+  <tr>
+  <td style="text-align: left;">Subparagraph</td>
+  <td style="text-align: right;"><span
+  class="math inline">\(5\)</span></td>
+  </tr>
+  </tbody>
+  </table>
+  </div>
+  <h3 id="sec:paper-size">Changing the Paper Size</h3>
+  <p>The Tufte-LaTeX classes currently only provide three paper sizes:
+  <span class="smallcaps">a4</span>, <span class="smallcaps">b5</span>,
+  and <span class="smallcaps">us</span> letter. To specify a different
+  paper size (and/or margins), use the <code>geometrysetup</code> <span>
+  </span> <span> </span> command in the preamble of your document (or
+  one of the file hooks). The full documentation of the
+  <code>geometrysetup</code> <span> </span> <span> </span> command may
+  be found in the <code>geometry</code> package documentation.<span
+  class="citation" data-cites="pkg-geometry">(-1em Umeki 2008,
+  33)</span></p>
+  <h3 id="sec:marginal-material">Customizing Marginal Material</h3>
+  <p>Marginal material includes sidenotes, citations, margin notes, and
+  captions. Normally, the justification of the marginal material follows
+  the justification of the body text. If you specify the
+  <code>justified</code> document class option, all of the margin
+  material will be fully justified as well. If you don’t specify the
+  <code>justified</code> option, then the marginal material will be set
+  ragged right.</p>
+  <p>You can set the justification of the marginal material separately
+  from the body text using the following document class options:
+  <code>sidenote</code>, <code>marginnote</code>, <code>caption</code>,
+  <code>citation</code>, and <code>marginals</code>. Each option refers
+  to its obviously corresponding marginal material type. The
+  <code>marginals</code> option simultaneously sets the justification on
+  all four marginal material types.</p>
+  <p>Each of the document class options takes one of five justification
+  types:</p>
+  <dl>
+  <dt><code>justified</code></dt>
+  <dd>
+  <p>Fully justifies the text (sets it flush left and right).</p>
+  </dd>
+  <dt><code>raggedleft</code></dt>
+  <dd>
+  <p>Sets the text ragged left, regardless of which page it falls
+  on.</p>
+  </dd>
+  <dt><code>raggedright</code></dt>
+  <dd>
+  <p>Sets the text ragged right, regardless of which page it falls
+  on.</p>
+  </dd>
+  <dt><code>raggedouter</code></dt>
+  <dd>
+  <p>Sets the text ragged left if it falls on the left-hand (verso) page
+  of the spread and otherwise sets it ragged right. This is useful in
+  conjunction with the <code>symmetric</code> document class option.</p>
+  </dd>
+  <dt><code>auto</code></dt>
+  <dd>
+  <p>If the <code>justified</code> document class option was specified,
+  then set the text fully justified; otherwise the text is set ragged
+  right. This is the default justification option if one is not
+  explicitly specified.</p>
+  </dd>
+  </dl>
+  <p>For example,</p>
+  <blockquote>
+  <p><code>documentclass</code>[symmetric,justified,marginals=raggedouter]{tufte-book}</p>
+  </blockquote>
+  <p>will set the body text of the document to be fully justified and
+  all of the margin material (sidenotes, margin notes, captions, and
+  citations) to be flush against the body text with ragged outer
+  edges.</p>
+  <p>of the marginal material may also be modified using the following
+  commands:</p>
+  <blockquote>
+  <p><code>setsidenotefont</code> <span> </span> <span> </span> {<span
+  class="math inline">\(\langle\)</span><span class="roman"><em>font
+  commands</em></span><span
+  class="math inline">\(\rangle\)</span>}<br />
+  <code>setcaptionfont</code> <span> </span> <span> </span> {<span
+  class="math inline">\(\langle\)</span><span class="roman"><em>font
+  commands</em></span><span
+  class="math inline">\(\rangle\)</span>}<br />
+  <code>setmarginnotefont</code> <span> </span> <span> </span> {<span
+  class="math inline">\(\langle\)</span><span class="roman"><em>font
+  commands</em></span><span
+  class="math inline">\(\rangle\)</span>}<br />
+  <code>setcitationfont</code> <span> </span> <span> </span> {<span
+  class="math inline">\(\langle\)</span><span class="roman"><em>font
+  commands</em></span><span class="math inline">\(\rangle\)</span>}</p>
+  </blockquote>
+  <p>The <span
+  style="color: Maroon"><code>setsidenotefont</code></span><span
+  id="cmd:setsidenotefont" data-label="cmd:setsidenotefont"></span>
+  <span> </span> <span> </span> sets the font and style for sidenotes,
+  the <span
+  style="color: Maroon"><code>setcaptionfont</code></span><span
+  id="cmd:setcaptionfont" data-label="cmd:setcaptionfont"></span> <span>
+  </span> <span> </span> for captions, the <span
+  style="color: Maroon"><code>setmarginnotefont</code></span><span
+  id="cmd:setmarginnotefont" data-label="cmd:setmarginnotefont"></span>
+  <span> </span> <span> </span> for margin notes, and the <span
+  style="color: Maroon"><code>setcitationfont</code></span><span
+  id="cmd:setcitationfont" data-label="cmd:setcitationfont"></span>
+  <span> </span> <span> </span> for citations. The <span
+  class="math inline">\(\langle\)</span><span class="roman"><em>font
+  commands</em></span><span class="math inline">\(\rangle\)</span> can
+  contain font size changes (e.g., <code>footnotesize</code>,
+  <code>Huge</code>, etc.), font style changes (e.g.,
+  <code>sffamily</code>, <code>ttfamily</code>, <code>itshape</code>,
+  etc.), color changes (e.g., <code>color</code><code>{blue}</code>),
+  and many other adjustments.</p>
+  <p>If, for example, you wanted the captions to be set in italic sans
+  serif, you could use:</p>
+  <blockquote>
+  <p><code>setcaptionfont</code> <span> </span> <span> </span>
+  {<code>itshape</code><code>sffamily</code>}</p>
+  </blockquote>
+  <h2 id="ch:compatibility">Compatibility Issues</h2>
+  <p>When switching an existing document from one document class to a
+  Tufte-LaTeX document class, a few changes to the document may have to
+  be made.</p>
+  <h3 id="converting-from-article-to-tufte-handout">Converting from
+  <code>article</code> to <code>tufte-handout</code></h3>
+  <p>The following <code>article</code> class options are unsupported:
+  <code>10pt</code>, <code>11pt</code>, <code>12pt</code>,
+  <code>a5paper</code>, <code>b5paper</code>,
+  <code>executivepaper</code>, <code>legalpaper</code>,
+  <code>landscape</code>, <code>onecolumn</code>, and
+  <code>twocolumn</code>.</p>
+  <p>The following headings are not supported:
+  <code>subsubsection</code> <span> </span> <span> </span> and
+  <code>subparagraph</code> <span> </span> <span> </span> .</p>
+  <h3 id="converting-from-book-to-tufte-book">Converting from
+  <code>book</code> to <code>tufte-book</code></h3>
+  <p>The following <code>report</code> class options are unsupported:
+  <code>10pt</code>, <code>11pt</code>, <code>12pt</code>,
+  <code>a5paper</code>, <code>b5paper</code>,
+  <code>executivepaper</code>, <code>legalpaper</code>,
+  <code>landscape</code>, <code>onecolumn</code>, and
+  <code>twocolumn</code>.</p>
+  <p>The following headings are not supported:
+  <code>subsubsection</code> <span> </span> <span> </span> and
+  <code>subparagraph</code> <span> </span> <span> </span> .</p>
+  <h2 id="ch:troubleshooting">Troubleshooting and Support</h2>
+  <h3 id="sec:website">Tufte-LaTeX Website</h3>
+  <p>The website for the Tufte-LaTeX packages is located at <a
+  href="http://code.google.com/p/tufte-latex/"
+  class="uri">http://code.google.com/p/tufte-latex/</a>. On our website,
+  you’ll find links to our repository, mailing lists, bug tracker, and
+  documentation.</p>
+  <h3 id="sec:mailing-lists">Tufte-LaTeX Mailing Lists</h3>
+  <p>There are two mailing lists for the Tufte-LaTeX project:</p>
+  <h6 id="discussion-list">Discussion list</h6>
+  <p>The <code>tufte-latex</code> discussion list is for asking
+  questions, getting assistance with problems, and help with
+  troubleshooting. Release announcements are also posted to this list.
+  You can subscribe to the <code>tufte-latex</code> discussion list at
+  <a href="http://groups.google.com/group/tufte-latex"
+  class="uri">http://groups.google.com/group/tufte-latex</a>.</p>
+  <h6 id="commits-list">Commits list</h6>
+  <p>The <code>tufte-latex-commits</code> list is a read-only mailing
+  list. A message is sent to the list any time the Tufte-LaTeX code has
+  been updated. If you’d like to keep up with the latest code
+  developments, you may subscribe to this list. You can subscribe to the
+  <code>tufte-latex-commits</code> mailing list at <a
+  href="http://groups.google.com/group/tufte-latex-commits"
+  class="uri">http://groups.google.com/group/tufte-latex-commits</a>.</p>
+  <h3 id="sec:getting-help">Getting Help</h3>
+  <p>If you’ve encountered a problem with one of the Tufte-LaTeX
+  document classes, have a question, or would like to report a bug,
+  please send an email to our mailing list or visit our website.</p>
+  <p>To help us troubleshoot the problem more quickly, please try to
+  compile your document using the <code>debug</code> class option and
+  send the generated <code>.log</code> file to the mailing list with a
+  brief description of the problem.</p>
+  <h3 id="sec:tl-messages">Errors, Warnings, and Informational
+  Messages</h3>
+  <p>The following is a list of all of the errors, warnings, and other
+  messages generated by the Tufte-LaTeX classes and a brief description
+  of their meanings.</p>
+  <div class="fullwidth">
+  <p>Error: <code>subparagraph</code> <span> </span> <span> </span> is
+  undefined by this class.</p>
+  </div>
+  <p>The <code>subparagraph</code> <span> </span> <span> </span> command
+  is not defined in the Tufte-LaTeX document classes. If you’d like to
+  use the <code>subparagraph</code> <span> </span> <span> </span>
+  command, you’ll need to redefine it yourself. See the “Headings”
+  section on page  for a description of the heading styles availaboe in
+  the Tufte-LaTeX document classes.</p>
+  <div class="fullwidth">
+  <p>Error: <code>subsubsection</code> <span> </span> <span> </span> is
+  undefined by this class.</p>
+  </div>
+  <p>The <code>subsubsection</code> <span> </span> <span> </span>
+  command is not defined in the Tufte-LaTeX document classes. If you’d
+  like to use the <code>subsubsection</code> <span> </span> <span>
+  </span> command, you’ll need to redefine it yourself. See the
+  “Headings” section on page  for a description of the heading styles
+  availaboe in the Tufte-LaTeX document classes.</p>
+  <div class="fullwidth">
+  <p>Error: You may only call <code>morefloats</code> <span> </span>
+  <span> </span> twice. See the</p>
+  <p>        Tufte-LaTeX documentation for other workarounds.</p>
+  </div>
+  <p>LaTeX allocates 18 slots for storing floats. The first time
+  <code>morefloats</code> <span> </span> <span> </span> is called, it
+  allocates an additional 34 slots. The second time
+  <code>morefloats</code> <span> </span> <span> </span> is called, it
+  allocates another 26 slots.</p>
+  <p>The <code>morefloats</code> <span> </span> <span> </span> command
+  may only be called two times. Calling it a third time will generate
+  this error message. See page  for more information.</p>
+  <div class="fullwidth">
+  <p>Warning: Option ‘<span class="math inline">\(\langle\)</span><span
+  class="roman"><em>class option</em></span><span
+  class="math inline">\(\rangle\)</span>’ is not supported -- ignoring
+  option.</p>
+  </div>
+  <p>This warning appears when you’ve tried to use <span
+  class="math inline">\(\langle\)</span><span class="roman"><em>class
+  option</em></span><span class="math inline">\(\rangle\)</span> with a
+  Tufte-LaTeX document class, but <span
+  class="math inline">\(\langle\)</span><span class="roman"><em>class
+  option</em></span><span class="math inline">\(\rangle\)</span> isn’t
+  supported by the Tufte-LaTeX document class. In this situation, <span
+  class="math inline">\(\langle\)</span><span class="roman"><em>class
+  option</em></span><span class="math inline">\(\rangle\)</span> is
+  ignored.</p>
+  <div class="fullwidth">
+  <p>Info: The ‘<code>symmetric</code>’ option implies
+  ‘<code>twoside</code>’</p>
+  </div>
+  <p>You specified the <code>symmetric</code> document class option.
+  This option automatically forces the <code>twoside</code> option as
+  well. See page  for more information on the <code>symmetric</code>
+  class option.</p>
+  <h3 id="sec:dependencies">Package Dependencies</h3>
+  <p>The following is a list of packages that the Tufte-LaTeX document
+  classes rely upon. Packages marked with an asterisk are optional.</p>
+  <div class="multicols">
+  <p><span>2</span></p>
+  <ul>
+  <li><p>xifthen</p></li>
+  <li><p>ifpdf*</p></li>
+  <li><p>ifxetex*</p></li>
+  <li><p>hyperref</p></li>
+  <li><p>geometry</p></li>
+  <li><p>ragged2e</p></li>
+  <li><p>chngpage <em>or</em> changepage</p></li>
+  <li><p>paralist</p></li>
+  <li><p>textcase</p></li>
+  <li><p>soul*</p></li>
+  <li><p>letterspace*</p></li>
+  <li><p>setspace</p></li>
+  <li><p>natbib <em>and</em> bibentry</p></li>
+  <li><p>optparams</p></li>
+  <li><p>placeins</p></li>
+  <li><p>mathpazo*</p></li>
+  <li><p>helvet*</p></li>
+  <li><p>fontenc</p></li>
+  <li><p>beramono*</p></li>
+  <li><p>fancyhdr</p></li>
+  <li><p>xcolor</p></li>
+  <li><p>textcomp</p></li>
+  <li><p>titlesec</p></li>
+  <li><p>titletoc</p></li>
+  </ul>
+  </div>
   <div id="refs" class="references csl-bib-body hanging-indent"
   role="list">
-  <div id="ref-adams_systems_2014" class="csl-entry" role="listitem">
-  Adams, Kevin MacG., Patrick T. Hester, Joseph M. Bradley, Thomas J.
-  Meyers, and Charles B. Keating. 2014. <span>“Systems
-  <span>Theory</span> as the <span>Foundation</span> for
-  <span>Understanding</span> <span>Systems</span>: <span>SYSTEMS</span>
-  <span>THEORY</span> <span>AS</span> <span>THE</span>
-  <span>FOUNDATION</span> <span>FOR</span> <span>UNDERSTANDING</span>
-  <span>SYSTEMS</span>.”</span> <em>Systems Engineering</em> 17 (1):
-  112–23. <a
-  href="https://doi.org/10.1002/sys.21255">https://doi.org/10.1002/sys.21255</a>.
+  <div id="ref-Bringhurst2005" class="csl-entry" role="listitem">
+  Bringhurst, Robert. 2005. <em>The Elements of Typography</em>. 3.1.
+  Hartley &amp; Marks.
   </div>
-  <div id="ref-ardalisOverviewASPNET2022" class="csl-entry"
-  role="listitem">
-  <span class="nocase">ardalis</span>. 2022. <em>Overview of
-  <span>ASP</span>.<span>NET Core MVC</span></em>. <a
-  href="https://learn.microsoft.com/en-us/aspnet/core/mvc/overview?view=aspnetcore-7.0">https://learn.microsoft.com/en-us/aspnet/core/mvc/overview?view=aspnetcore-7.0</a>.
+  <div id="ref-Tufte1990" class="csl-entry" role="listitem">
+  Tufte, Edward R. 1990. <em>Envisioning Information</em>. Graphics
+  Press.
   </div>
-  <div id="ref-avgeriouArchitecturalPatternsRevisited2005"
-  class="csl-entry" role="listitem">
-  Avgeriou, Paris, and Uwe Zdun. 2005. <span>“Architectural
-  <span>Patterns Revisited</span> - <span>A Pattern
-  Language</span>.”</span> 81 (January): 431–70.
+  <div id="ref-Tufte1997" class="csl-entry" role="listitem">
+  Tufte, Edward R. 1997. <em>Visual Explanations</em>. Graphics Press.
   </div>
-  <div id="ref-bachmannDocumentingSoftwareArchitecture2002"
-  class="csl-entry" role="listitem">
-  Bachmann, Felix, Len Bass, Paul Clements, David Garlan, and James
-  Ivers. 2002. <em>Documenting <span>Software Architecture</span>:
-  <span>Documenting Behavior</span>:</em> <span>Defense Technical
-  Information Center</span>. <a
-  href="https://doi.org/10.21236/ADA399792">https://doi.org/10.21236/ADA399792</a>.
+  <div id="ref-Tufte2001" class="csl-entry" role="listitem">
+  Tufte, Edward R. 2001. <em>The Visual Display of Quantitative
+  Information</em>. Graphics Press.
   </div>
-  <div id="ref-bassSoftwareArchitecturePractice2003" class="csl-entry"
-  role="listitem">
-  Bass, Len, Paul Clements, and Rick Kazman. 2003. <em>Software
-  Architecture in Practice</em>. <span>Addison-Wesley
-  Professional</span>.
+  <div id="ref-Tufte2006" class="csl-entry" role="listitem">
+  Tufte, Edward R. 2006. <em>Beautiful Evidence</em>. First. Graphics
+  Press, <span>LLC</span>.
   </div>
-  <div id="ref-beltaFormalMethodsDiscreteTime2017" class="csl-entry"
-  role="listitem">
-  Belta, Calin, Boyan Yordanov, and Ebru Aydin Gol. 2017. <em>Formal
-  <span>Methods</span> for <span>Discrete-Time Dynamical
-  Systems</span></em>. Vol. 89. Studies in <span>Systems</span>,
-  <span>Decision</span> and <span>Control</span>. <span>Springer
-  International Publishing</span>. <a
-  href="https://doi.org/10.1007/978-3-319-50763-7">https://doi.org/10.1007/978-3-319-50763-7</a>.
-  </div>
-  <div id="ref-borgerAbstractStateMachines2010" class="csl-entry"
-  role="listitem">
-  Börger, Egon. 2010. <span>“The <span>Abstract State Machines
-  Method</span> for <span>High-Level System Design</span> and
-  <span>Analysis</span>.”</span> In <em>Formal <span>Methods</span>:
-  <span>State</span> of the <span>Art</span> and <span>New
-  Directions</span></em>, edited by Paul Boca, Jonathan P. Bowen, and
-  Jawed Siddiqi. <span>Springer London</span>. <a
-  href="https://doi.org/10.1007/978-1-84882-736-3_3">https://doi.org/10.1007/978-1-84882-736-3_3</a>.
-  </div>
-  <div id="ref-brooks_using_1978" class="csl-entry" role="listitem">
-  Brooks, Ruven. 1978. <span>“Using a Behavioral Theory of Program
-  Comprehension in Software Engineering.”</span> <em>Proceedings of the
-  3rd International Conference on <span>Software</span>
-  Engineering</em>, 196–201.
-  </div>
-  <div id="ref-brooks1983towards" class="csl-entry" role="listitem">
-  Brooks, Ruven. 1983. <span>“Towards a Theory of the Comprehension of
-  Computer Programs.”</span> <em>International Journal of Man-Machine
-  Studies</em> 18 (6): 543–54.
-  </div>
-  <div id="ref-buschmannPatternOrientedSoftwareArchitecture1996"
-  class="csl-entry" role="listitem">
-  Buschmann, Frank, Regine Meunier, Hans Rohnert, Peter Sommerlad, and
-  Michael Stal. 1996a. <em>Pattern-<span>Oriented Software
-  Architecture</span> - <span>Volume</span> 1: <span>A System</span> of
-  <span>Patterns</span></em>. <span>Wiley Publishing</span>.
-  </div>
-  <div id="ref-BuschmannMeunierEtAl96" class="csl-entry"
-  role="listitem">
-  Buschmann, Frank, Regine Meunier, Hans Rohnert, Peter Sommerlad, and
-  Michael Stal. 1996b. <em>Pattern-Oriented Software Architecture,
-  Volume 1: A System of Patterns</em>. Wiley. <a
-  href="https://www.safaribooksonline.com/library/view/pattern-oriented-software-architecture/9781118725269/">https://www.safaribooksonline.com/library/view/pattern-oriented-software-architecture/9781118725269/</a>.
-  </div>
-  <div id="ref-choppella2021algodynamics" class="csl-entry"
-  role="listitem">
-  Choppella, Venkatesh, Kasturi Viswanath, and Mrityunjay Kumar. 2021.
-  <span>“Algodynamics: Algorithms as Systems.”</span> <em>2021 IEEE
-  Frontiers in Education Conference (FIE)</em>, 1–9.
-  </div>
-  <div id="ref-clementsPracticalMethodDocumenting2002" class="csl-entry"
-  role="listitem">
-  Clements, Paul, Felix Bachmann, Len Bass, et al. 2002. <em>A
-  <span>Practical Method</span> for <span>Documenting Software
-  Architectures</span></em>. September.
-  </div>
-  <div id="ref-dijkstra2006ewd472" class="csl-entry" role="listitem">
-  Dijkstra, Edsger W. 2006. <em>Ewd472: Guarded Commands,
-  Non-Determinacy and Formal. Derivation of Programs</em>. August.
-  </div>
-  <div id="ref-fehlingCollectionPatternsCloud2011" class="csl-entry"
-  role="listitem">
-  Fehling, Christoph, Frank Leymann, Ralph Mietzner, and Walter
-  Schupeck. 2011. <span>“A Collection of Patterns for Cloud Types, Cloud
-  Service Models, and Cloud-Based Application Architectures.”</span>
-  <em>Institute of Architecture of Application Systems</em>.
-  </div>
-  <div id="ref-fowlerPatternsEnterpriseApplication2012"
-  class="csl-entry" role="listitem">
-  Fowler, Martin. 2012. <em>Patterns of <span>Enterprise Application
-  Architecture</span>: <span>Pattern Enterpr Applica Arch</span></em>.
-  <span>Addison-Wesley</span>.
-  </div>
-  <div id="ref-gammaDesignPatternsAbstraction1993" class="csl-entry"
-  role="listitem">
-  Gamma, Erich, Richard Helm, Ralph Johnson, and John Vlissides. 1993.
-  <span>“Design Patterns: <span>Abstraction</span> and Reuse of
-  Object-Oriented Design.”</span> <em><span>ECOOP</span>’93: 7th
-  <span>European Conference Kaiserslautern</span>, <span>Germany</span>,
-  <span>July</span> 26, 1993 <span>Proceedings</span> 7</em>, 406–31.
-  </div>
-  <div id="ref-gurevichSequentialAbstractstateMachines2000"
-  class="csl-entry" role="listitem">
-  Gurevich, Yuri. 2000. <span>“Sequential Abstract-State Machines
-  Capture Sequential Algorithms.”</span> <em>ACM Transactions on
-  Computational Logic</em> 1 (1): 77–111. <a
-  href="https://doi.org/10.1145/343369.343384">https://doi.org/10.1145/343369.343384</a>.
-  </div>
-  <div id="ref-harelStatechartsVisualFormalism1987" class="csl-entry"
-  role="listitem">
-  Harel, David. 1987. <span>“Statecharts: A Visual Formalism for Complex
-  Systems.”</span> <em>Science of Computer Programming</em> 8 (3):
-  231–74. <a
-  href="https://doi.org/10.1016/0167-6423(87)90035-9">https://doi.org/10.1016/0167-6423(87)90035-9</a>.
-  </div>
-  <div id="ref-hmelo-silver_understanding_2006" class="csl-entry"
-  role="listitem">
-  Hmelo-Silver, Cindy E., and Roger Azevedo. 2006. <span>“Understanding
-  <span>Complex</span> <span>Systems</span>: <span>Some</span>
-  <span>Core</span> <span>Challenges</span>.”</span> <em>Journal of the
-  Learning Sciences</em> 15 (1): 53–61. <a
-  href="https://doi.org/10.1207/s15327809jls1501_7">https://doi.org/10.1207/s15327809jls1501_7</a>.
-  </div>
-  <div id="ref-hmelo-silver_fish_2007" class="csl-entry"
-  role="listitem">
-  Hmelo-Silver, Cindy E., Surabhi Marathe, and Lei Liu. 2007.
-  <span>“Fish <span>Swim</span>, <span>Rocks</span> <span>Sit</span>,
-  and <span>Lungs</span> <span>Breathe</span>:
-  <span>Expert</span>-<span>Novice</span> <span>Understanding</span> of
-  <span>Complex</span> <span>Systems</span>.”</span> <em>Journal of the
-  Learning Sciences</em> 16 (3): 307–31. <a
-  href="https://doi.org/10.1080/10508400701413401">https://doi.org/10.1080/10508400701413401</a>.
-  </div>
-  <div id="ref-hmelo-silver_comparing_2004" class="csl-entry"
-  role="listitem">
-  Hmelo-Silver, Cindy E., and Merav Green Pfeffer. 2004.
-  <span>“Comparing Expert and Novice Understanding of a Complex System
-  from the Perspective of Structures, Behaviors, and Functions.”</span>
-  <em>Cognitive Science</em> 28 (1): 127–38. <a
-  href="https://doi.org/10.1207/s15516709cog2801_7">https://doi.org/10.1207/s15516709cog2801_7</a>.
-  </div>
-  <div id="ref-hoare1985communicating" class="csl-entry"
-  role="listitem">
-  <span class="nocase">Hoare, Charles Antony Richard et al.</span> 1985.
-  <em>Communicating Sequential Processes</em>. Vol. 178. Prentice-hall
-  Englewood Cliffs.
-  </div>
-  <div id="ref-holtSysMLSystemsEngineering2008" class="csl-entry"
-  role="listitem">
-  Holt, Jon, and Simon Perry. 2008. <em><span>SysML</span> for Systems
-  Engineering</em>. Vol. 7. <span>IET</span>.
-  </div>
-  <div id="ref-JavaSEApplication" class="csl-entry" role="listitem">
-  <em>Java <span>SE Application Design With MVC</span></em>. n.d.
-  Accessed October 9, 2023. <a
-  href="https://www.oracle.com/technical-resources/articles/javase/mvc.html">https://www.oracle.com/technical-resources/articles/javase/mvc.html</a>.
-  </div>
-  <div id="ref-kamalEvaluationADLsModeling2007" class="csl-entry"
-  role="listitem">
-  Kamal, Ahmad Waqas, and Paris Avgeriou. 2007. <span>“An Evaluation of
-  <span>ADLs</span> on Modeling Patterns for Software
-  Architecture.”</span> In <em><span>EPRINTS-BOOK-TITLE</span></em>.
-  <span>University of Groningen, Johann Bernoulli Institute for
-  Mathematics and …</span>.
-  </div>
-  <div id="ref-krasner1988cookbook" class="csl-entry" role="listitem">
-  Krasner, Glenn E. 1988. <span>“A Cookbook for Using
-  Model-View-Controller User Interface Paradigmin Smalltalk-80.”</span>
-  <em>J. Object Oriented Programming</em> 1 (3): 26–49.
-  </div>
-  <div id="ref-kumar2023modeling" class="csl-entry" role="listitem">
-  Kumar, Mrityunjay, and Venkatesh Choppella. 2023a. <span>“A Modeling
-  Language for Novice Engineers to Design Well at SaaS Product
-  Companies.”</span> <em>Proceedings of the 16th Innovations in Software
-  Engineering Conference</em>, 1–5.
-  </div>
-  <div id="ref-kumar2023evaluating" class="csl-entry" role="listitem">
-  Kumar, Mrityunjay, and Venkatesh Choppella. 2023b. <span>“Evaluating
-  the Difficulty for Novice Engineers in Learning and Using Transition
-  Systems for Modeling Software Systems.”</span> <em>Proceedings of the
-  16th Annual ACM India Compute Conference</em>, 19–24.
-  </div>
-  <div id="ref-letovsky_cognitive_1987" class="csl-entry"
-  role="listitem">
-  Letovsky, Stanley. 1987. <span>“Cognitive Processes in Program
-  Comprehension.”</span> <em>Journal of Systems and Software</em> 7 (4):
-  325–39. <a
-  href="https://doi.org/10.1016/0164-1212(87)90032-X">https://doi.org/10.1016/0164-1212(87)90032-X</a>.
-  </div>
-  <div id="ref-lynch2003input" class="csl-entry" role="listitem">
-  Lynch, Nancy. 2003. <span>“Input/Output Automata: Basic, Timed,
-  Hybrid, Probabilistic, Dynamic,...”</span> <em>CONCUR 2003-Concurrency
-  Theory: 14th International Conference, Marseille, France, September
-  3-5, 2003. Proceedings 14</em>, 191–92.
-  </div>
-  <div id="ref-lynch1996distributed" class="csl-entry" role="listitem">
-  Lynch, Nancy A. 1996. <em>Distributed Algorithms</em>. Elsevier.
-  </div>
-  <div id="ref-maccoll1999specifying" class="csl-entry" role="listitem">
-  MacColl, Ian, and David Carrington. 1999. <span>“Specifying
-  Interactive Systems in Object-z and CSP.”</span> <em>IFM’99:
-  Proceedings of the 1st International Conference on Integrated Formal
-  Methods, York, 28-29 June 1999</em>, 335–52.
-  </div>
-  <div id="ref-malavoltaWhatIndustryNeeds2013" class="csl-entry"
-  role="listitem">
-  Malavolta, Ivano, Patricia Lago, Henry Muccini, Patrizio Pelliccione,
-  and Antony Tang. 2013. <span>“What <span>Industry Needs</span> from
-  <span>Architectural Languages</span>: <span>A Survey</span>.”</span>
-  <em>IEEE Transactions on Software Engineering</em> 39 (6): 869–91. <a
-  href="https://doi.org/10.1109/TSE.2012.74">https://doi.org/10.1109/TSE.2012.74</a>.
-  </div>
-  <div id="ref-meadows2008thinking" class="csl-entry" role="listitem">
-  Meadows, Donella H. 2008. <em>Thinking in Systems: A Primer</em>.
-  Chelsea green publishing.
-  </div>
-  <div id="ref-milner1980calculus" class="csl-entry" role="listitem">
-  Milner, Robin. 1980. <em>A Calculus of Communicating Systems</em>.
-  Springer.
-  </div>
-  <div id="ref-pahlArchitecturalPrinciplesCloud2018" class="csl-entry"
-  role="listitem">
-  Pahl, Claus, Pooyan Jamshidi, and Olaf Zimmermann. 2018.
-  <span>“Architectural Principles for Cloud Software.”</span> <em>ACM
-  Transactions on Internet Technology (TOIT)</em> 18 (2): 1–23.
-  </div>
-  <div id="ref-perryFoundationsStudySoftware1992" class="csl-entry"
-  role="listitem">
-  Perry, Dewayne E., and Alexander L. Wolf. 1992. <span>“Foundations for
-  the Study of Software Architecture.”</span> <em>ACM SIGSOFT Software
-  Engineering Notes</em> 17 (4): 40–52. <a
-  href="https://doi.org/10.1145/141874.141884">https://doi.org/10.1145/141874.141884</a>.
-  </div>
-  <div id="ref-shaw2005formulations" class="csl-entry" role="listitem">
-  Shaw, Mary, and David Garlan. 2005. <span>“Formulations and Formalisms
-  in Software Architecture.”</span> <em>Computer Science Today: Recent
-  Trends and Developments</em>, 307–23.
-  </div>
-  <div id="ref-smith2012object" class="csl-entry" role="listitem">
-  Smith, Graeme. 2012. <em>The Object-z Specification Language</em>.
-  Vol. 1. Springer Science &amp; Business Media.
-  </div>
-  <div id="ref-spivey1992z" class="csl-entry" role="listitem">
-  Spivey, J Michael, and Jean-Raymond Abrial. 1992. <em>The z
-  Notation</em>. Vol. 29. Prentice Hall Hemel Hempstead.
-  </div>
-  <div id="ref-tabuada2009verification" class="csl-entry"
-  role="listitem">
-  Tabuada, Paulo. 2009. <em>Verification and Control of Hybrid Systems:
-  A Symbolic Approach</em>. Springer Science &amp; Business Media.
-  </div>
-  <div id="ref-taibiArchitecturalPatternsMicroservices2018"
-  class="csl-entry" role="listitem">
-  Taibi, Davide, Valentina Lenarduzzi, and Claus Pahl. 2018.
-  <span>“Architectural Patterns for Microservices: A Systematic Mapping
-  Study.”</span> <em><span>CLOSER</span> 2018: <span>Proceedings</span>
-  of the 8th <span>International Conference</span> on <span>Cloud
-  Computing</span> and <span>Services Science</span>;
-  <span>Funchal</span>, <span>Madeira</span>, <span>Portugal</span>,
-  19-21 <span>March</span> 2018</em>.
-  </div>
-  <div id="ref-vanbenthemLogicTransitionSystems1994" class="csl-entry"
-  role="listitem">
-  Van Benthem, Johan, and Jan Bergstra. 1994. <span>“Logic of Transition
-  Systems.”</span> <em>Journal of Logic, Language and Information</em> 3
-  (4): 247–83. <a
-  href="https://doi.org/10.1007/BF01160018">https://doi.org/10.1007/BF01160018</a>.
-  </div>
-  <div id="ref-weilkiensSystemsEngineeringSysML2011" class="csl-entry"
-  role="listitem">
-  Weilkiens, Tim. 2011. <em>Systems Engineering with
-  <span>SysML</span>/<span>UML</span>: Modeling, Analysis, Design</em>.
-  <span>Elsevier</span>.
-  </div>
-  <div id="ref-yadav2010capturing" class="csl-entry" role="listitem">
-  Yadav, Dharmendra K, and Rushikesh K Joshi. 2010. <span>“Capturing
-  Interactions in Architectural Patterns.”</span> <em>2010 IEEE 2nd
-  International Advance Computing Conference (IACC)</em>, 443–48.
-  </div>
-  <div id="ref-zeigler2000theory" class="csl-entry" role="listitem">
-  Zeigler, Bernard P, Tag Gon Kim, and Herbert Praehofer. 2000.
-  <em>Theory of Modeling and Simulation</em>. Academic press.
+  <div id="ref-pkg-geometry" class="csl-entry" role="listitem">
+  Umeki, Hideo. 2008. <em>The <code>geometry</code> Package</em>. <a
+  href="http://ctan.org/pkg/geometry"
+  class="uri">Http://ctan.org/pkg/geometry</a>.
   </div>
   </div>
   <section id="footnotes" class="footnotes footnotes-end-of-document"
   role="doc-endnotes">
   <hr />
   <ol>
-  <li id="fn1"><p>SoS is used here differently from how it is used
-  elsewhere: "systems that are built from components which are
-  large-scale systems in their own right."<a href="#fnref1"
-  class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+  <li id="fn1"><p>This is a sidenote that was entered using the
+  <code>\footnote</code> command.<a href="#fnref1" class="footnote-back"
+  role="doc-backlink">↩︎</a></p></li>
   </ol>
   </section>
 
